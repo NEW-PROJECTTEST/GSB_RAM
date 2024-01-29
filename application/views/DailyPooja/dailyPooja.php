@@ -276,9 +276,9 @@ if ($success) {
 
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
-                                        <label for="role">Notes</label>
+                                        <label for="role">Remarks</label>
                                         <textarea class="form-control required" value="" name="remarks" id="remarks"
-                                            rows="4" placeholder="Notes" autocomplete="off"></textarea>
+                                            rows="4" placeholder="Remarks" autocomplete="off"></textarea>
                                     </div>
                                 </div>
 
@@ -387,6 +387,12 @@ jQuery(document).ready(function() {
         }
     });
     var table = $('#member-list').DataTable({
+
+        lengthMenu: [
+            [100, 50, 20, 10],
+            [100, 50, 20, 10]
+        ],
+        "order": [[ 1, "desc" ]],
 
         processing: true,
         orderCellsTop: true,

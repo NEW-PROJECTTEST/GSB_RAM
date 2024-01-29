@@ -137,8 +137,13 @@ table {
                 <tr>
                     <td colspan="2" style="font-size: 13px;"><br><b>Amount: <span
                                 style="text-transform: none;"><?php echo getIndianCurrency(floatval($dpInfo->amount)).' only'; ?></span></b>
+                                <br><b>Notes: <span
+                                style="text-transform: none;"><?php echo $dpInfo->remarks; ?></span></b>
                     </td>
+
+                   
                 </tr>
+                
             </table>
 
         </div>
