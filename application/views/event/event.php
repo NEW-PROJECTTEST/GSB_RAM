@@ -159,9 +159,18 @@ jQuery(document).ready(function() {
     $('#member-list thead tr:eq(1) th').each(function(i) {
 
         var title = $(this).text();
+
+        var newClassupdate = '';
+        if (title == 'Date') {
+            // alert('hi');
+            var newClassupdate = 'datepicker_from';
+            // alert(newClassupdate);
+        }
+
         if (title != 'Actions') {
             $(this).html(
-                '<div class="form-group position-relative mb-0 mt-0 search-padding "><input type="text" class="form-control input-sm" placeholder="Search" ' +
+                '<div class="form-group position-relative mb-0 mt-0" style="margin-top: -5px !important; margin-bottom: -5px !important;" ><input style="border: 1px solid #75787b !important;" type="text" class="form-control input-sm ' +
+                newClassupdate + '" placeholder="Search ' +
                 title + '" /> </div>');
             $('input', this).on('keyup change', function() {
                 if (table.column(i).search() !== this.value) {
@@ -242,7 +251,7 @@ jQuery(document).ready(function() {
     //     }
     // });
 
-    jQuery('.datepicker').datepicker({
+    jQuery('.datepicker, .datepicker_from').datepicker({
         autoclose: true,
         orientation: "bottom",
         format: "dd-mm-yyyy"

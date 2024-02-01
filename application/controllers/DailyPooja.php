@@ -70,7 +70,7 @@ class DailyPooja extends BaseController
             }
 
             $data_array_new[] = array(
-                // $r->row_id,
+                // $r->date,
                  $r->devotee_name,
                  $r->event_type,
                  $r->month,
@@ -530,6 +530,7 @@ class DailyPooja extends BaseController
             $devotee_name = $this->security->xss_clean($this->input->post('devotee_name'));
             $amount = $this->security->xss_clean($this->input->post('amount'));
             $collected_by_f = $this->security->xss_clean($this->input->post('collected_by_f'));
+            $date = $this->security->xss_clean($this->input->post('date'));
             $seva_name_f = $this->security->xss_clean($this->input->post('seva_name_f'));
             $payment_type_filter = $this->security->xss_clean($this->input->post('payment_type_filter'));
             $donation_type = $this->security->xss_clean($this->input->post('donation_type'));
@@ -538,6 +539,7 @@ class DailyPooja extends BaseController
             $data['devotee_name'] = $devotee_name;
             $data['amount'] = $amount;
             $data['collected_by_f'] = $collected_by_f;
+            // $data['date'] = $date;
             $data['seva_name_f'] = $seva_name_f;
             $data['payment_type_filter'] = $payment_type_filter;
             $data['donation_type'] = $donation_type;
@@ -545,9 +547,18 @@ class DailyPooja extends BaseController
             $filter['devotee_name'] = $devotee_name;
             $filter['amount'] = $amount;
             $filter['collected_by_f'] = $collected_by_f;
+            // $filter['date'] = $date;
             $filter['seva_name_f'] = $seva_name_f;
             $filter['payment_type_filter'] = $payment_type_filter;
             $filter['donation_type'] = $donation_type;
+
+            if(!empty($date)) {
+                $data['date'] = date('d-m-Y',strtotime($date));
+                $filter['date'] = date('Y-m-d',strtotime($date));
+            } else {
+                $data['date'] = "";
+                $filter['date'] = "";
+            }
             
             // $data['purposeInfo'] = $this->setting_model->getAllPurposeInfo($this->company_id);
             $searchText = $this->security->xss_clean($this->input->post('searchText'));

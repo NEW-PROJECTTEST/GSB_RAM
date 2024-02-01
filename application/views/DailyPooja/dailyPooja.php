@@ -82,7 +82,7 @@ if ($success) {
                             class="display table table-striped table-hover nowrap ">
                             <thead>
                                 <tr>
-                                    <!-- <th>ID</th> -->
+                                    <!-- <th>Date</th> -->
                                     <th>Seva By</th>
                                     <th>Pooja Type</th>
                                     <th>Month</th>

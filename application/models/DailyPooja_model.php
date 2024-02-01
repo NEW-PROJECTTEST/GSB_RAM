@@ -9,7 +9,7 @@ class DailyPooja_model extends CI_Model
 
     function poojaList($company_id)
     {
-        $this->db->select('dailypooja.row_id,devotee.devotee_address,dailypooja.devotee_id,dailypooja.event_type,devotee.devotee_name,dailypooja.month');
+        $this->db->select('dailypooja.row_id,devotee.devotee_address,dailypooja.devotee_id,dailypooja.event_type,devotee.devotee_name,dailypooja.month,dailypooja.date');
         $this->db->from('tbl_dailypooja_management_info as dailypooja');
         $this->db->join('tbl_devotee as devotee','devotee.row_id=dailypooja.devotee_id','left');
         $this->db->where('dailypooja.event_type', 'Date');
@@ -23,7 +23,7 @@ class DailyPooja_model extends CI_Model
 
     function poojaListCount($company_id)
     {
-        $this->db->select('dailypooja.row_id,dailypooja.devotee_id,dailypooja.event_type,devotee.devotee_name,dailypooja.month');
+        $this->db->select('dailypooja.row_id,devotee.devotee_address,dailypooja.devotee_id,dailypooja.event_type,devotee.devotee_name,dailypooja.month,dailypooja.date');
         $this->db->from('tbl_dailypooja_management_info as dailypooja');
         $this->db->join('tbl_devotee as devotee','devotee.row_id=dailypooja.devotee_id','left');
         $this->db->where('dailypooja.event_type', 'Date');
@@ -315,6 +315,10 @@ function donationListingCount($filter='',$company_id)
         $this->db->where($likeCriteria);
     }
 
+    if(!empty($filter['date'])){
+        $this->db->where('BaseTbl.date', $filter['date']);
+    }
+
     if(!empty($filter['seva_name_f'])){
         $likeCriteria = "(BaseTbl.seva_name  LIKE '%".$filter['seva_name_f']."%')";
         $this->db->where($likeCriteria);
@@ -358,6 +362,10 @@ function donationListing($filter='',$company_id, $page, $segment)
 
     if(!empty($filter['amount'])){
         $this->db->where('BaseTbl.amount', $filter['amount']);
+    }
+
+    if(!empty($filter['date'])){
+        $this->db->where('BaseTbl.date', $filter['date']);
     }
 
     // if(!empty($filter['collected_by_f'])){

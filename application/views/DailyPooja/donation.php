@@ -100,6 +100,17 @@ if ($error) {
 
                                     <th width="150" style="padding: 0px;">
                                         <div class="form-group position-relative mb-0"><input
+                                                class="form-control is-valid mobile-width datepicker" type="text"
+                                                name="date" id="" value="<?php echo $date ?>"
+                                                class="form-control input-sm pull-right"
+                                                style="" placeholder="By Date"
+                                                autocomplete="off">
+                                            <div class="valid-feedback feedback-icon"><i class="fa fa-user"></i></div>
+                                        </div>
+                                    </th>
+
+                                    <th width="150" style="padding: 0px;">
+                                        <div class="form-group position-relative mb-0"><input
                                                 class="form-control is-valid mobile-width " type="text"
                                                 name="donation_type" id="" value="<?php echo $donation_type ?>"
                                                 class="form-control input-sm pull-right"
@@ -155,6 +166,7 @@ if ($error) {
                             <tr class=" text-white bg-black ">
                                 <th>Devotee Name</th>
                                 <th>Collected By</th>
+                                <th>Date</th>
                                 <th>Type</th>
                                 <th>Seva Name</th>
                                 <th>Address</th>
@@ -171,6 +183,7 @@ if ($error) {
                             <tr class="text-black">
                                 <td><?php echo $record->devotee_name ?></td>
                                 <td><?php echo $record->name ?></td>
+                                <td><?php echo date('d-m-Y',strtotime($record->date)); ?></td>
                                 <td><?php echo $record->donation_type ?></td>
                                 <td><?php echo $record->seva_name ?></td>
 

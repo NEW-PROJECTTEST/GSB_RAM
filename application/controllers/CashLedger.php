@@ -52,8 +52,14 @@ class CashLedger extends BaseController
                 $deleteButton='' ;
                 $editButton='';
             }
+            if($r->cash_ledger_date=='1970-01-01'){
+                $cash_ledger_date='';
+            } else {
+                $cash_ledger_date =date('d-m-Y',strtotime($r->cash_ledger_date));
+            }
+
             $data_array_new[] = array(
-                 $r->cash_ledger_date,
+                $cash_ledger_date,
                  $r->party_name,
                  $r->reason,
                  $r->cash_amount,
