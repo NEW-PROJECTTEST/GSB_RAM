@@ -146,6 +146,15 @@ if ($error) {
                                     </div>
                                 </div>
 
+                                <div class="form-group col-md-6 quantity_display">
+                                    <label for="fname">Quantity*</label>
+                                    <input class="form-control is-valid mobile-width " type="text"
+                                        onkeypress="return isNumberKey(event)" name="quantity"
+                                        id="quantity" value="<?php echo $donationInfo->quantity;?>" class="form-control input-sm pull-right "
+                                        style="text-transform: uppercase" placeholder="Enter Quantity"
+                                        autocomplete="off">
+                                </div>
+
 
                                 <div class="form-group col-md-6 donation_display">
                                     <label for="fname">Donation Amount*</label>
@@ -288,12 +297,16 @@ $("#donation_type").change(function() {
         if (donation_type == 'DONATION') {
             $('.donation_display').show();
             $('.seva_display').hide();
+            $('.quantity_display').hide();
             $('#donation_amount').prop('required',true);
             $('#seva_name').prop('required',false);
+            $('#quantity').prop('required',false);
             $('#type_of_donation').prop('required',true);
         } else {
             $('.donation_display').hide();
             $('.seva_display').show();  
+            $('.quantity_display').show();  
+            $('#quantity').prop('required',true); 
             $('#seva_name').prop('required',true); 
             $('#donation_amount').prop('required',false);  
             $('#type_of_donation').prop('required',false);  
@@ -352,12 +365,16 @@ jQuery(document).ready(function() {
         if (donation_type == 'DONATION') {
             $('.donation_display').show();
             $('.seva_display').hide();
+            $('.quantity_display').hide();
             $('#donation_amount').prop('required',true);
             $('#seva_name').prop('required',false);
+            $('#quantity').prop('required',false);
             $('#type_of_donation').prop('required',true);
         } else {
             $('.donation_display').hide();
             $('.seva_display').show();  
+            $('.quantity_display').show();  
+            $('#quantity').prop('required',true); 
             $('#seva_name').prop('required',true); 
             $('#donation_amount').prop('required',false);    
             $('#type_of_donation').prop('required',false);

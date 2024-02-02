@@ -417,7 +417,8 @@ public function updateIncomeDetail($incomeInfo, $row_id) {
 
 function getdonationInfoById($row_id)
 {
-    $this->db->select('BaseTbl.row_id,BaseTbl.created_date_time,BaseTbl.type_of_donation,BaseTbl.seva_amount,BaseTbl.donation_type,BaseTbl.email,BaseTbl.committee_id,BaseTbl.payment_type,BaseTbl.date,BaseTbl.purpose,BaseTbl.amount,BaseTbl.name,BaseTbl.address,purpose.purpose_name,BaseTbl.devotee_name,BaseTbl.reference_number,BaseTbl.mobile_number,BaseTbl.note,BaseTbl.seva_name,BaseTbl.seva_id,commi.type');
+    $this->db->select('BaseTbl.row_id,BaseTbl.created_date_time,BaseTbl.type_of_donation,BaseTbl.seva_amount,BaseTbl.donation_type,BaseTbl.email,BaseTbl.committee_id,BaseTbl.payment_type,BaseTbl.date,BaseTbl.purpose,BaseTbl.amount,BaseTbl.name,BaseTbl.address,purpose.purpose_name,BaseTbl.devotee_name,BaseTbl.reference_number,BaseTbl.mobile_number,BaseTbl.note,BaseTbl.seva_name,BaseTbl.seva_id,commi.type,
+    BaseTbl.quantity');
     $this->db->from('tbl_donation_info as BaseTbl');
     $this->db->join('tbl_purpose as purpose','purpose.row_id=BaseTbl.purpose','left');
     $this->db->join('tbl_committetype as commi','commi.row_id=BaseTbl.committee_id','left');
