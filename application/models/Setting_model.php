@@ -90,6 +90,7 @@ class Setting_model extends CI_Model
         $this->db->from('tbl_tithi as tithi');
         $this->db->where('tithi.is_deleted', 0);
         $this->db->where('tithi.company_id',$company_id);
+        $this->db->order_by('tithi.priority');
         $query = $this->db->get();
         return $query->result();
     }
