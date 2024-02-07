@@ -122,8 +122,8 @@ class Expenses extends BaseController
                         $_FILES['file']['tmp_name']   = $files['userfile']['tmp_name'][$i];
                         $_FILES['file']['error']      = $files['userfile']['error'][$i];
                         $_FILES['file']['size']       = $files['userfile']['size'][$i];
-                        if($_FILES['file']['size'] >  405000) {
-                            $this->session->set_flashdata('error', 'File size should be less than 400KB');
+                        if($_FILES['file']['size'] >  505000) {
+                            $this->session->set_flashdata('error', 'File size should be less than 500KB');
                             redirect('expenseListing');  
                         } else{
                             $this->upload->initialize($config);

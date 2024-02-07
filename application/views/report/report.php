@@ -579,7 +579,7 @@
                     </div>
             </div>
             <!-- Modal footer -->
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
             <div class="col-4">
                     <select class="form-control text-dark" id="reportFormat" name="reportFormat" required>
                         <option value="VIEW">VIEW</option>
@@ -588,6 +588,22 @@
                 </div>
                 <button type="submit" id="assetReport" class="btn btn-success">Download</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+            <div class="modal-footer" style="padding: 5px;">
+                            <div class="row">
+                <div class="col-lg-4 col-4">
+                <input type="submit" class=" btn btn-primary" id="reportFormat" name="reportFormat" value="VIEW" onclick="selectOption('VIEW')" formtarget="_blank"/>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="submit" id="assetReport" value="Download" name="buttonName" class="btn btn-success">Download</button>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
             </div>
             </form>
         </div>
@@ -631,7 +647,7 @@
             <!-- Modal footer -->
 
 
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
                 <div class="col-4">
                     <select class="form-control text-dark" id="reportFormat" name="reportFormat" required>
                         <option value="VIEW">VIEW</option>
@@ -641,6 +657,23 @@
                 <button id="downloadstaffReportExcel" type="submit" class="btn btn-md btn-primary float-right"><i
                         class="fa fa-download"></i> Submit</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div> -->
+
+            <div class="modal-footer" style="padding: 5px;">
+                            <div class="row">
+                <div class="col-lg-4 col-4">
+                <input type="submit" class=" btn btn-primary" id="reportFormat" name="reportFormat" value="VIEW" onclick="selectOption('VIEW')" formtarget="_blank"/>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="submit" id="downloadstaffReportExcel" value="Download" name="buttonName" class="btn btn-success">Download</button>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
             </div>
 
             <!-- <div class="modal-footer">
@@ -967,7 +1000,7 @@
                     </div>
             </div>
             <!-- Modal footer -->
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
                 <div class="col-4">
                     <select class="form-control text-dark" id="" name="reportFormat" required>
                         <option value="VIEW">VIEW</option>
@@ -976,6 +1009,22 @@
                 </div>
                 <button type="submit" id="assetReport" class="btn btn-success">Download</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+            <div class="modal-footer" style="padding: 5px;">
+                            <div class="row">
+                <div class="col-lg-4 col-4">
+                <input type="submit" class=" btn btn-primary" id="reportFormat" name="reportFormat" value="VIEW" onclick="selectOption('VIEW')" formtarget="_blank"/>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="submit" id="assetReport" value="Download" name="buttonName" class="btn btn-success">Download</button>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
             </div>
             </form>
         </div>
@@ -1039,7 +1088,7 @@
                     </div>
             </div>
             <!-- Modal footer -->
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
                 <div class="col-4">
                     <select class="form-control text-dark" id="" name="reportFormat" required>
                         <option value="VIEW">VIEW</option>
@@ -1048,6 +1097,22 @@
                 </div>
                 <button type="submit" id="assetReport" class="btn btn-success">Download</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+            <div class="modal-footer" style="padding: 5px;">
+                            <div class="row">
+                <div class="col-lg-4 col-4">
+                <input type="submit" class=" btn btn-primary" id="reportFormat" name="reportFormat" value="VIEW" onclick="selectOption('VIEW')" formtarget="_blank"/>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="submit" id="assetReport" value="Download" name="buttonName" class="btn btn-success">Download</button>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
             </div>
             </form>
         </div>

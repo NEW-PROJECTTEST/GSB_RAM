@@ -413,7 +413,7 @@ if ($error) {
                                                     <input class="form-control is-valid mobile-width " type="email"
                                                         name="email" id="email" value=""
                                                         class="form-control input-sm pull-right"
-                                                        style="text-transform: uppercase" placeholder="Email"
+                                                        style="" placeholder="Email"
                                                         autocomplete="off">
                                                 </div>
 

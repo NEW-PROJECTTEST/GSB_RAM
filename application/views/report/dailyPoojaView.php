@@ -1,3 +1,8 @@
+<?php 
+ini_set('memory_limit', '1024M');
+ini_set("pcre.backtrack_limit", "5000000");
+ini_set('max_execution_time', -1); 
+?>
 <style>
 .break { page-break-before: always; } 
 .break_after { page-break-before: none; } 
