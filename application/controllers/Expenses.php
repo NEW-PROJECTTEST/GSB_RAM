@@ -110,7 +110,7 @@ class Expenses extends BaseController
                 }
     
                 $config=['upload_path' => $uploadPath,
-                'allowed_types' => 'jpg|png|jpeg|pdf','max_size' => '2024','overwrite' => TRUE, ];
+                'allowed_types' => 'jpg|png|jpeg|pdf','max_size' => '10240','overwrite' => TRUE, ];
                 $this->load->library('upload', $config);
                 $files = $_FILES;
                 $ImgCount = count($_FILES['userfile']['name']);
@@ -122,8 +122,8 @@ class Expenses extends BaseController
                         $_FILES['file']['tmp_name']   = $files['userfile']['tmp_name'][$i];
                         $_FILES['file']['error']      = $files['userfile']['error'][$i];
                         $_FILES['file']['size']       = $files['userfile']['size'][$i];
-                        if($_FILES['file']['size'] >  505000) {
-                            $this->session->set_flashdata('error', 'File size should be less than 500KB');
+                        if($_FILES['file']['size'] >  10240000) {
+                            $this->session->set_flashdata('error', 'File size should be less than 10MB');
                             redirect('expenseListing');  
                         } else{
                             $this->upload->initialize($config);
@@ -179,6 +179,8 @@ class Expenses extends BaseController
                 redirect('expenseListing');
             }
             $data['expenseInfo'] = $this->expenses_model->getExpenseInfoById($row_id);
+            $data['atachmentInfo'] = $this->expenses_model->getAttachmentDocumentInfo($row_id);
+            // log_message('debug','atachmentInfo '.print_r($data['atachmentInfo'],true));
             $data['partyInfo'] =$this->expenses_model->getPartyInfo($this->company_id);
             $data['bank'] = $this->bank_model->getAllBank($this->company_id);
             $data['cashAccount'] = $this->cash_account_model->getAllCashAccounts($this->company_id);
@@ -194,46 +196,133 @@ class Expenses extends BaseController
      * This function is used to edit the devotee information
      */
     function updateExpense()
-    {
-        if($this->isAdmin() == TRUE)
-        {
-            $this->loadThis();
+{
+    if ($this->isAdmin() == TRUE) {
+        $this->loadThis();
+    } else {
+        // Retrieve expense information from the form
+        $row_id = $this->input->post('row_id');
+        $account_type = $this->security->xss_clean($this->input->post('account_type'));
+        $expense_amount = $this->input->post('expense_amount');
+        $invoice_no = $this->input->post('invoice_no');
+        $expense_type = $this->input->post('expense_type');
+        $party_id = $this->input->post('party');
+        $comments = $this->input->post('comments');
+        $bank_row_id = $this->input->post('bank_row_id');
+        $cash_row_id = $this->input->post('cash_row_id');
+        $type_of_expense = $this->input->post('type_of_expense');
+        $committee_name = $this->input->post('committee_name');
+        $event_type = $this->input->post('event_type');
+        $year = $this->input->post('year');
+        $documentName = $this->security->xss_clean($this->input->post('documentName')); // Array of attachment names
+
+        if (!empty($committee_name)) {
+            $committee_info = $this->committee_model->getCommitteeTypeById($committee_name);
+            $com_name = $committee_info->type;
         } else {
-            // $devotee_id = $this->input->post('devotee_id');
-            $row_id = $this->input->post('row_id');
-            $account_type = $this->security->xss_clean($this->input->post('account_type'));
-            $expense_amount = $this->input->post('expense_amount');
-            $invoice_no = $this->input->post('invoice_no');
-            $expense_type = $this->input->post('expense_type');
-            $party_id = $this->input->post('party');
-            $comments = $this->input->post('comments');
-            $bank_row_id = $this->input->post('bank_row_id');
-            $cash_row_id = $this->input->post('cash_row_id');
-            $type_of_expense = $this->input->post('type_of_expense');
-            $committee_name = $this->input->post('committee_name');
-            $event_type = $this->input->post('event_type');
-            $year = $this->input->post('year');
-
-            if(!empty($committee_name)){
-                $committee_info = $this->committee_model->getCommitteeTypeById($committee_name);
-                $com_name = $committee_info->type;
-                }else{
-                    $com_name = '';
-                }
-
-                $expensesInfo = array('account_type'=>$account_type,'year'=>date('Y',strtotime($year)),'event_type'=>$event_type,'committee_name'=>$com_name,'type_of_expense'=>$type_of_expense,'committee_id'=> $committee_name,'amount'=>$expense_amount,'invoice_no'=>$invoice_no,'comments'=>$comments,'party_id'=>$party_id,
-                'expense_type'=>$expense_type,'cash_row_id'=>$cash_row_id,'bank_row_id'=>$bank_row_id,'company_id'=>$this->company_id,'created_by'=>$this->employee_id, 'created_date_time'=>date('Y-m-d H:i:s'),'expense_date'=>date('Y-m-d',strtotime($year)));
-                    
-                $result = $this->expenses_model->updateExpense($expensesInfo,$row_id);
-                if($result > 0){
-                    $this->session->set_flashdata('success', 'New Expense updated successfully');
-                } else {
-                    $this->session->set_flashdata('error', 'expense update failed');
-                }
-                redirect('editExpensePageView/'.$row_id);
-            
+            $com_name = '';
         }
+
+        // Update expense information
+        $expensesInfo = array(
+            'account_type' => $account_type,
+            'year' => date('Y', strtotime($year)),
+            'event_type' => $event_type,
+            'committee_name' => $com_name,
+            'type_of_expense' => $type_of_expense,
+            'committee_id' => $committee_name,
+            'amount' => $expense_amount,
+            'invoice_no' => $invoice_no,
+            'comments' => $comments,
+            'party_id' => $party_id,
+            'expense_type' => $expense_type,
+            'cash_row_id' => $cash_row_id,
+            'bank_row_id' => $bank_row_id,
+            'company_id' => $this->company_id,
+            'created_by' => $this->employee_id,
+            'created_date_time' => date('Y-m-d H:i:s'),
+            'expense_date' => date('Y-m-d', strtotime($year))
+        );
+
+        $result = $this->expenses_model->updateExpense($expensesInfo, $row_id);
+
+        // Handle attachments
+        $uploadPath = 'upload/attachment/' . $row_id . '/';
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
+
+        $config = array(
+            'upload_path' => $uploadPath,
+            'allowed_types' => 'jpg|png|jpeg|pdf',
+            'max_size' => '10240',
+            'overwrite' => TRUE,
+        );
+        $this->load->library('upload', $config);
+        $files = $_FILES;
+        $ImgCount = count($_FILES['userfile']['name']);
+        for ($i = 0; $i < $ImgCount; $i++) {
+            if (!empty($_FILES['userfile']['name'][$i])) {
+                $config['file_name'] = $documentName[$i];
+                $_FILES['file']['name']       = $files['userfile']['name'][$i];
+                $_FILES['file']['type']       = $files['userfile']['type'][$i];
+                $_FILES['file']['tmp_name']   = $files['userfile']['tmp_name'][$i];
+                $_FILES['file']['error']      = $files['userfile']['error'][$i];
+                $_FILES['file']['size']       = $files['userfile']['size'][$i];
+                if ($_FILES['file']['size'] >  10240000) {
+                    $this->session->set_flashdata('error', 'File size should be less than 10MB');
+                    redirect('expenseListing');
+                } else {
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('file')) {
+                        $imageData = $this->upload->data();
+                        $uploadImgData[$i] = $uploadPath . $imageData['file_name'];
+                    }
+                }
+            }
+        }
+
+        for ($j = 0; $j < count($documentName); $j++) {
+            if (!empty($uploadImgData[$j])) {
+                $certificateInfo = array(
+                    'doc_name' => $documentName[$j],
+                    'doc_path' => $uploadImgData[$j],
+                    'expense_row_id' => $row_id,
+                    'created_by' => $this->employee_id,
+                    'created_date_time' => date('Y-m-d H:i:s')
+                );
+                // log_message('debug','$documentName[$j]'.$documentName[$j]);
+
+                $isExist = $this->expenses_model->checkDocumentInfoExists($row_id, $documentName[$j]);
+                if ($isExist > 0) {
+                // log_message('debug','hii');
+
+                    $certificateInfo = array(
+                        'doc_path' => $uploadImgData[$j],
+                        'updated_by' => $this->employee_id,
+                        'updated_date_time' => date('Y-m-d H:i:s')
+                    );
+                    $result2 = $this->expenses_model->updateDocument($row_id, $certificateInfo, $documentName[$j]);
+                } else {
+                    $result2 = $this->expenses_model->addDocument($certificateInfo);
+                }
+            }
+        }
+
+        // Set flash message based on the update result
+        if ($result > 0) {
+            $this->session->set_flashdata('success', 'Expense updated successfully');
+        } else {
+            $this->session->set_flashdata('error', 'Expense update failed');
+        }
+
+        // Redirect back to the edit page
+        redirect('editExpensePageView/' . $row_id);
     }
+}
+
+    
+    
 
 
     

@@ -849,6 +849,25 @@ public function downloadDevotee(){
                                 $committe_id = $this->security->xss_clean($this->input->post('committe_id'));
                               //  log_message('debug','test'.$committe_id);
                                 $year = $this->security->xss_clean($this->input->post('year'));
+                            $reportFormat = $this->security->xss_clean($this->input->post('reportFormat'));
+
+
+                                if($reportFormat == 'VIEW'){
+                                    $data['expense_fromDate'] = $expense_fromDate;
+                                    $data['expense_toDate'] = $expense_toDate;
+                                    $data['event_type'] = $event_type;
+                                    $data['committe_id'] = $committe_id;
+                                    $data['company_id'] = $this->company_id;
+                                    $data['year'] = $year;
+                                    $data['expenses_model'] = $this->expenses_model;
+                                    $this->global['pageTitle'] = ''.EXCEL_TITLE.' : DEVOTEE REPORT';
+                                    $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                                    $mpdf->AddPage('P','','','','',10,10,10,10,8,8);
+                                    $mpdf->SetTitle('PANCHANGA POOJA');
+                                    $html = $this->load->view('report/expenseView',$data,true);
+                                    $mpdf->WriteHTML($html);
+                                    $mpdf->Output('Panchanga_Report.pdf', 'I');
+                                }else{
             
                                 $cellNameByStudentReport = array('G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
                                 $sheet = 0;
@@ -946,7 +965,7 @@ public function downloadDevotee(){
                                         $this->excel->createSheet(); 
                                     // }
                                     
-                                }
+                              
                                 
                                 $filename ='Expense_Report_'.date('d-m-Y').'.xls'; //save our workbook as this file name
                                 header('Content-Type: application/vnd.ms-excel'); //mime type
@@ -956,7 +975,8 @@ public function downloadDevotee(){
                                 ob_start();
                                 setcookie('isDownLoaded',1);  
                                 $objWriter->save("php://output");
-                                
+                             }
+                            }
                             }
 
 

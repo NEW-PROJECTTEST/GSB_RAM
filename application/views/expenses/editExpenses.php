@@ -195,21 +195,7 @@ if ($error) {
                                         </select>
                                     </div>
                                 </div>
-                                <!-- <div class="col-lg-6 col-12">
-                                        <div class="form-group">
-                                            <label for="account_type">Year*</label>
-                                            <select class="form-control " id="year" name="year"
-                                                required>
-                                                <option value="<?php echo $expenseInfo->year; ?>">Selected:
-                                                <?php echo $expenseInfo->year; ?></option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2024">2024</option>
-                                                <option value="2025">2025</option>
-                                                <option value="2026">2026</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
+                                   
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label for="contact_number_two">Date*</label>
@@ -226,6 +212,37 @@ if ($error) {
                                             autocomplete="off"> <?php echo $expenseInfo->comments; ?></textarea>
                                     </div>
                                 </div>
+
+                                <?php foreach ($atachmentInfo as $key => $attachment): ?>
+    <div class="col-lg-6 col-12">
+        <div class="form-group">
+            <label for="attachment<?php echo $key + 1; ?>">Attachment <?php echo $key + 1; ?></label>
+            <img src="<?php echo base_url($attachment->doc_path); ?>" alt="Attachment <?php echo $key + 1; ?>" style="max-width: 200px; max-height: 200px;">
+            <input type="file" accept="image/png, image/jpeg, image/jpg, application/pdf" class="form-control-sm" id="attachment<?php echo $key + 1; ?>" name="userfile[]">
+            <input type="hidden" value="<?php echo $attachment->doc_name; ?>" name="documentName[]">
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<?php for ($i = count($atachmentInfo) + 1; $i <= 3; $i++): ?>
+    <div class="col-lg-6 col-12">
+        <div class="form-group">
+            <label for="attachment<?php echo $i; ?>">Attachment <?php echo $i; ?></label>
+            <input type="file" accept="image/png, image/jpeg, image/jpg, application/pdf" class="form-control-sm" id="attachment<?php echo $i; ?>" name="userfile[]">
+            <input type="hidden" value="attachment_<?php echo $i; ?>" name="documentName[]">
+        </div>
+    </div>
+<?php endfor; ?>
+
+
+
+
+
+
+
+
+
+                                
 
                             </div>
                     </div>

@@ -243,6 +243,30 @@ class Expenses_model extends CI_Model
          return $result;  
      }
 
+     function getAttachmentByName($doc_name, $expense_row_id) {
+        $this->db->where('doc_name', $doc_name);
+        $this->db->where('expense_row_id', $expense_row_id);
+        return $this->db->get('tbl_attachment_document_details')->row();
+    }
+
+    function updateDocument($row_id, $certificateInfo, $doc_name) {
+        $this->db->where('expense_row_id', $row_id);
+        $this->db->where('doc_name', $doc_name);
+        $this->db->update('tbl_attachment_document_details', $certificateInfo);
+        return $this->db->affected_rows();
+    }
+    
+    function checkDocumentInfoExists($row_id, $doc_name) {
+        $this->db->from('tbl_attachment_document_details');
+        $this->db->where('doc_name', $doc_name);
+        $this->db->where('expense_row_id', $row_id);
+        $this->db->where("is_deleted", 0);
+        $query = $this->db->get();
+        return $query->num_rows(); // Return the number of rows directly
+    }
+    
+
+
 
 
 }

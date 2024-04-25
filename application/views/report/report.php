@@ -461,9 +461,21 @@
                     </div>
             </div>
             <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-success">Download</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-footer" style="padding: 5px;">
+                            <div class="row">
+                <div class="col-lg-4 col-4">
+                <input type="submit" class=" btn btn-primary" id="reportFormat" name="reportFormat" value="VIEW" onclick="selectOption('VIEW')" formtarget="_blank"/>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="submit" id="assetReport" value="Download" name="buttonName" class="btn btn-success">Download</button>
+                </div>
+
+                <div class="col-lg-4 col-4">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
             </div>
             </form>
         </div>
