@@ -3931,7 +3931,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 		}
 
 		$i = count($this->fonts) + $this->extraFontSubsets + 1;
-
+		
 		$this->fonts[$fontkey] = [
 			'i' => $i,
 			'name' => $font['name'],
@@ -3960,7 +3960,7 @@ class Mpdf implements \Psr\Log\LoggerAwareInterface
 			'GPOSFeatures' => $font['GPOSFeatures'],
 			'GPOSLookups' => $font['GPOSLookups'],
 			'rtlPUAstr' => $font['rtlPUAstr'],
-			'glyphIDtoUni' => $glyphIDtoUni,
+			// 'glyphIDtoUni' => $glyphIDtoUni,
 			'haskerninfo' => $font['haskerninfo'],
 			'haskernGPOS' => $font['haskernGPOS'],
 			'hassmallcapsGSUB' => $font['hassmallcapsGSUB'],
