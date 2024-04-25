@@ -109,7 +109,7 @@ if ($error) {
                                 <th width="10000">Event Type</th>
                                 <th width="10000">Committee</th>
                                 <th width="10000">Amount</th>
-                                <th class="text-center" width="10000">Actions</th>
+                                <th class="text-center" width="11000">Actions</th>
                             </tr>
                             <?php
                     if(!empty($expensesRecords))
@@ -124,7 +124,7 @@ if ($error) {
                                 <td><?php echo $expense->event_type ?></td>
                                 <td><?php echo $expense->committee_name ?></td>
                                 <td><?php echo $expense->amount ?></td>
-                                <td class="text-center">
+                                <td class="text-center" width="15%">
 
                                     <a class="btn  btn-sm btn-info"
                                         href="<?php echo base_url().'editExpensePageView/'.$expense->row_id; ?>"
