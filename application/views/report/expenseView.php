@@ -127,7 +127,7 @@ u {
                             </tr>        
                             <?php        
                         } ?>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td style="padding-top: 20px;font-size:20px;width: 200px;"><b>Total : <?php echo $total_amount ?></b></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td style="padding-top: 20px;font-size:20px;width: 200px;"><b>Total : <?php echo $total_amount ?></b></td></tr>
 
                 <?php    }
                 
