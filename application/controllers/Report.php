@@ -863,10 +863,10 @@ public function downloadDevotee(){
                                     $this->global['pageTitle'] = ''.EXCEL_TITLE.' : DEVOTEE REPORT';
                                     $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
                                     $mpdf->AddPage('P','','','','',10,10,10,10,8,8);
-                                    $mpdf->SetTitle('PANCHANGA POOJA');
+                                    $mpdf->SetTitle('EXPENSE REPORT');
                                     $html = $this->load->view('report/expenseView',$data,true);
                                     $mpdf->WriteHTML($html);
-                                    $mpdf->Output('Panchanga_Report.pdf', 'I');
+                                    $mpdf->Output('expense.pdf', 'I');
                                 }else{
             
                                 $cellNameByStudentReport = array('G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
