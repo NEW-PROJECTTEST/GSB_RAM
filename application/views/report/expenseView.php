@@ -59,12 +59,12 @@ u {
                 </tr>
                 <tr>
                     <th style="border: 1px solid black;text-align: center;">SL No.</th>
-                    <th style="border: 1px solid black;text-align: center;">Expense Name</th>
-                    <th style="border: 1px solid black;text-align: center;">Payment Type</th>
+                    <th style="border: 1px solid black;text-align: center;">Expense Date</th>
                     <th style="border: 1px solid black;text-align: center;">Event Type</th>
                     <th style="border: 1px solid black;text-align: center;">Committee</th>
+                    <th style="border: 1px solid black;text-align: center;">Payment Type</th>
+                    <th style="border: 1px solid black;text-align: center;">Expense Name</th>
                     <th style="border: 1px solid black;text-align: center;">Amount</th>
-                    <th style="border: 1px solid black;text-align: center;">Expense Date</th>
                     <th style="border: 1px solid black;text-align: center;">Notes</th>
                     
 
@@ -115,12 +115,12 @@ u {
                             ?>  
                             <tr>
                             <th style="border: 1px solid black;text-align: center"><?php echo $j++; ?></th>
-                            <th style="border: 1px solid black;text-align: center;"><?php echo $expense->expense_type; ?></th>
-                            <th style="border: 1px solid black;text-align: center;"><?php echo $expense->account_type; ?></th>
-                            <th style="border: 1px solid black;text-align: left;"><?php echo $expense->event_type; ?></th>
+                            <th style="border: 1px solid black;text-align: center;"><?php echo $expense_date; ?></th>
+                            <th style="border: 1px solid black;text-align: center;"><?php echo $expense->event_type; ?></th>
                             <th style="border: 1px solid black;text-align: left;"><?php echo $expense->committee_name; ?></th>
+                            <th style="border: 1px solid black;text-align: left;"><?php echo $expense->account_type; ?></th>
+                            <th style="border: 1px solid black;text-align: left;"><?php echo $expense->expense_type; ?></th>
                             <th style="border: 1px solid black;text-align: left;"><?php echo $expense->amount; ?></th>
-                            <th style="border: 1px solid black;text-align: left;"><?php echo $expense_date; ?></th>
                             <th style="border: 1px solid black;text-align: left;"><?php echo $expense->comments; ?></th>
                             
 
