@@ -591,7 +591,7 @@ class DailyPooja extends BaseController
            
                 $devotee_name = $this->security->xss_clean($this->input->post('devotee_name'));
                 $amount = $this->security->xss_clean($this->input->post('amount'));
-                $quantity = $this->security->xss_clean($this->input->post('quantity'));
+                // $quantity = $this->security->xss_clean($this->input->post('quantity'));
                 $devotee_address = $this->security->xss_clean($this->input->post('devotee_address'));
                 $purpose = $this->security->xss_clean($this->input->post('purpose'));    
                 $payment_type = $this->security->xss_clean($this->input->post('payment_type'));    
@@ -624,8 +624,8 @@ class DailyPooja extends BaseController
                         if(!empty($seva)){
                     $seva_info = $this->DailyPooja_model->getSevaInfoById($seva);
                     $seva_name_all.= $seva_info->seva_name.',';
-                    $seva_amount_all.= $seva_info->amount * $quantity.',';
-                    $total_amount+= $seva_info->amount * $quantity;
+                    $seva_amount_all.= $seva_info->amount.',';
+                    $total_amount+= $seva_info->amount;
                     }}
                 }
               }else{
@@ -647,7 +647,7 @@ class DailyPooja extends BaseController
                     'seva_name'    => $seva_name_all,
                     'seva_amount'  => $seva_amount_all,
                     'amount' =>  $total_amount,
-                    'quantity' =>  $quantity,
+                    // 'quantity' =>  $quantity,
                     'donation_type' =>$donation_type,
                     'address' => $devotee_address,
                     'purpose' =>$purpose,
@@ -917,7 +917,7 @@ class DailyPooja extends BaseController
            
                 $devotee_name = $this->security->xss_clean($this->input->post('devotee_name'));
                 $amount = $this->security->xss_clean($this->input->post('amount'));
-                $quantity = $this->security->xss_clean($this->input->post('quantity'));
+                // $quantity = $this->security->xss_clean($this->input->post('quantity'));
                 $devotee_address = $this->security->xss_clean($this->input->post('devotee_address'));
                 $purpose = $this->security->xss_clean($this->input->post('purpose'));    
                 $payment_type = $this->security->xss_clean($this->input->post('payment_type'));    
@@ -948,8 +948,8 @@ class DailyPooja extends BaseController
                                 if(!empty($seva)){
                             $seva_info = $this->DailyPooja_model->getSevaInfoById($seva);
                             $seva_name_all.= $seva_info->seva_name.',';
-                            $seva_amount_all.= $seva_info->amount * $quantity.',';
-                            $total_amount+= $seva_info->amount * $quantity;
+                            $seva_amount_all.= $seva_info->amount.',';
+                            $total_amount+= $seva_info->amount;
                             }
                             }
                         }
@@ -972,7 +972,7 @@ class DailyPooja extends BaseController
                     'seva_name'    => $seva_name_all,
                     'seva_amount'    => $seva_amount_all,
                     'amount' =>  $total_amount,
-                    'quantity' =>  $quantity,
+                    // 'quantity' =>  $quantity,
                     'type_of_donation' => $type_of_donation,
                     'donation_type' =>$donation_type,
                     'address' => $devotee_address,
