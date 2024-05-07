@@ -23,6 +23,9 @@ class Expenses_model extends CI_Model
         if(!empty($filter['expense_type'])){
             $this->db->where('BaseTbl.expense_type', $filter['expense_type']);
         }
+        if(!empty($filter['event_type'])){
+            $this->db->where('BaseTbl.event_type', $filter['event_type']);
+        }
        
         $this->db->where('BaseTbl.company_id',$company_id);
         $this->db->where('BaseTbl.is_deleted', 0);
@@ -52,6 +55,9 @@ class Expenses_model extends CI_Model
         // }
         if(!empty($filter['expense_type'])){
             $this->db->where('BaseTbl.expense_type', $filter['expense_type']);
+        }
+        if(!empty($filter['event_type'])){
+            $this->db->where('BaseTbl.event_type', $filter['event_type']);
         }
 
         $this->db->where('BaseTbl.company_id',$company_id);

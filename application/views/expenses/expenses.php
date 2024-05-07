@@ -84,7 +84,24 @@ if ($error) {
                                         </div>
                                     </th>
                                     <th width="150" style="padding: 0px;">
-                                        <div class="form-group position-relative mb-0"><input
+                                        <select class="form-control input-sm" id="" name="event_type">
+
+                                            <?php if($event_type != ""){ ?>
+
+                                            <option value="<?php echo $event_type; ?>" selected><b>Sorted:
+
+                                                    <?php echo $event_type; ?></b></option>
+
+                                            <?php } ?>
+
+                                            <option value="">By Event Type</option>
+
+                                            <?php foreach($eventInfo as $event){ ?>
+                                                <option value="<?php echo $event->events ?>"><?php echo $event->events ?></option>
+                                            <?php } ?>
+
+                                        </select>
+                                        <!-- <div class="form-group position-relative mb-0"><input
                                                 class="form-control is-valid mobile-width " type="text"
                                                 name="account_type" id="account_type"
                                                 value="<?php echo $account_type ?>"
@@ -92,7 +109,7 @@ if ($error) {
                                                 style="text-transform: uppercase" placeholder="By Payment Type"
                                                 autocomplete="off">
                                             <div class="valid-feedback feedback-icon"><i class="fa fa-money"></i></div>
-                                        </div>
+                                        </div> -->
                                     </th>
                                     
                                     <th width="150" style="padding: 0px;">
