@@ -559,7 +559,7 @@
                         <div class="col-lg-6 col-12 mt-2">
                             <div class="form-group">
                                 <label for="purpose">Select Donation/ Seva</label>
-                                <select class="form-control selectpicker" id="" name="donation_type"
+                                <select class="form-control" id="donation_type" name="donation_type" onchange="handleDonationTypeChange(this)"
                                     data-live-search="true">
                                     <option value=""> Select </option>
                                     <option value=""> ALL</option>
@@ -570,21 +570,33 @@
                         </div>
 
 
-                        <!-- <div class="col-lg-6 col-12 mt-2">
+                        <div class="col-lg-6 col-12 mt-2 donation_display">
                             <div class="form-group">
-                                <label for="purpose">Donation Type</label>
-                                <select class="form-control selectpicker" id="" name="type_of_donation"
-                                    data-live-search="true">
+                                <label for="purpose">Donation Type*</label>
+                                <select class="form-control selectpicker" id="type_of_donation" name="type_of_donation" data-live-search="true">
                                     <option value=""> Select </option>
-                                    <option value=""> ALL</option>
-                                    <?php// if(!empty($donationTypeInfo)) {
-                                                             //foreach($donationTypeInfo as $data ){ ?>
-                                    <option value="<?php// echo $data->donation_type;?>">
-                                        <?php// echo $data->donation_type;?></option>
-                                    <?php// }}?>
+                                    <?php if(!empty($donationTypeInfo)) {
+                                        foreach($donationTypeInfo as $role ){?>
+                                    <option value="<?php echo $role->donation_type;?>">
+                                        <?php echo $role->donation_type;?></option>
+                                    <?php }}?>
                                 </select>
                             </div>
-                        </div> -->
+                        </div>
+
+                        <div class="col-lg-6 col-12 mt-2 seva_display">
+                            <div class="form-group">
+                                <label for="purpose">Seva Type*</label>
+                                <select class="form-control selectpicker" id="seva_name" name="seva_name" required data-live-search="true">
+                                    <option value=""> Select Seva </option>
+                                    <?php if(!empty($sevaInfo)) {
+                                        foreach($sevaInfo as $role ){?>
+                                    <option value="<?php echo $role->seva_name;?>">
+                                        <?php echo $role->seva_name;?></option>
+                                    <?php }}?>
+                                </select>
+                            </div>
+                        </div>
 
 
 
@@ -1552,6 +1564,7 @@
 </div>
 <!--end transaction modal -->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
 function GoBackWithRefresh(event) {
@@ -1890,11 +1903,34 @@ function downloadBankTransactionReport() {
 
 }
 
+function handleDonationTypeChange(selectElement) {
+    const donation_type = selectElement.value;
+    if (donation_type == 'DONATION') {
+            $('.donation_display').show();
+            $('.seva_display').hide();
+          
+            $('#type_of_donation').prop('required',true);
+            $('#seva_name').prop('required',false);
+           
+        } else {
+            $('.donation_display').hide();
+            $('.seva_display').show();  
+            $('#seva_name').prop('required',true); 
+            $('#type_of_donation').prop('required',false); 
+         }
+    
+    // Add any additional logic you want to execute on change
+}
+
 jQuery(document).ready(function() {
-    $(".lease_vehicle").hide();
+   
     $(".own_vehicle").hide();
     $(".transporter_name").hide();
     $('.js-example-basic-single').select2();
+
+    $('.donation_display').hide();
+    $('.seva_display').hide();
+  
     jQuery('.resetFilters').click(function() {
         $(this).closest('form').find("input[type=text]").val("");
     })
@@ -1904,6 +1940,8 @@ jQuery(document).ready(function() {
         format: "dd-mm-yyyy"
 
     });
+
+    
     $("#vehicle_type").change(function(e) {
         var value = $("#vehicle_type").val();
         if (value == 'Own') {

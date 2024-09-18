@@ -481,6 +481,9 @@ function donationInfoForReport($filter='',$company_id)
         $this->db->where('BaseTbl.donation_type', $filter['donation_type']);
     }
 
+    if(!empty($filter['seva_name'])){
+        $this->db->like('BaseTbl.seva_name', $filter['seva_name']);
+    }
     
     if(!empty($filter['type_of_donation'])){
         $this->db->where('BaseTbl.type_of_donation', $filter['type_of_donation']);

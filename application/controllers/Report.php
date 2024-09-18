@@ -50,6 +50,7 @@ class Report extends BaseController
         $data['purposeInfo'] = $this->settings->getAllPurposeInfo($this->company_id);
         $data['committeeInfo'] = $this->settings->getAllCommittetypeInfo($this->company_id);
         $data['donationTypeInfo'] = $this->settings->getAllDonationTypeInfo($this->company_id);
+        $data['sevaInfo'] = $this->DailyPooja_model->getAllSevaInfo($this->company_id);
 
         //  $data="";
          $this->global['pageTitle'] = $this->company_name.' : Report ';
@@ -996,6 +997,8 @@ public function downloadDevotee(){
                                     $collected_by = $this->security->xss_clean($this->input->post('collected_by'));
                                     $reportFormat = $this->security->xss_clean($this->input->post('reportFormat'));
                                     $type_of_donation = $this->security->xss_clean($this->input->post('type_of_donation'));
+                                    $seva_name = $this->security->xss_clean($this->input->post('seva_name'));
+
                             
                                     $filter['report_type']= "Asset";
                                     // $filter['stream_name']= $stream[$sheet];
@@ -1015,6 +1018,7 @@ public function downloadDevotee(){
                                     $filter['donation_type']= $donation_type;
                                     $filter['collected_by']= $collected_by;
                                     $filter['type_of_donation']= $type_of_donation;
+                                    $filter['seva_name']= $seva_name;
                             
                                     if($reportFormat == 'VIEW'){
                                         $data['dt_filter'] = $filter;
@@ -1076,6 +1080,8 @@ public function downloadDevotee(){
                                         $this->excel->setActiveSheetIndex($sheet)->setCellValue('K'.$excel_row, 'Seva');
                                         $this->excel->setActiveSheetIndex($sheet)->setCellValue('L'.$excel_row, 'Donation Type');
                                         $this->excel->setActiveSheetIndex($sheet)->setCellValue('M'.$excel_row, 'Amount');
+                                        $styleBorderArray = array('borders' => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)));
+                                        $this->excel->getActiveSheet()->getStyle('A1:M4')->applyFromArray($styleBorderArray);
                                       
                             
                                         $sl = 1;
@@ -1111,14 +1117,18 @@ public function downloadDevotee(){
                                                 $this->excel->getActiveSheet()->getStyle('J'.$excel_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
                                                 $this->excel->getActiveSheet()->getStyle('M'.$excel_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
                                                 $excel_row++;
+                                                $styleBorderArray = array('borders' => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)));
+                                                $this->excel->getActiveSheet()->getStyle('A'.$excel_row.':M'.$excel_row)->applyFromArray($styleBorderArray);
                                             }
                                             $excel_row++;
-                                            $this->excel->setActiveSheetIndex($sheet)->setCellValue('D'.$excel_row, 'TOTAL AMOUNT');
-                                            $this->excel->getActiveSheet()->getStyle('D'.$excel_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                                            $this->excel->getActiveSheet()->getStyle('D'.$excel_row)->getFont()->setBold(true);
-                                            $this->excel->setActiveSheetIndex($sheet)->setCellValue('E'.$excel_row, $total_amount);
-                                            $this->excel->getActiveSheet()->getStyle('E'.$excel_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                                            $this->excel->getActiveSheet()->getStyle('E'.$excel_row)->getFont()->setBold(true);
+                                            $this->excel->setActiveSheetIndex($sheet)->setCellValue('L'.$excel_row, 'TOTAL AMOUNT');
+                                            $this->excel->getActiveSheet()->getStyle('L'.$excel_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                                            $this->excel->getActiveSheet()->getStyle('L'.$excel_row)->getFont()->setBold(true);
+                                            $this->excel->setActiveSheetIndex($sheet)->setCellValue('M'.$excel_row, $total_amount);
+                                            $this->excel->getActiveSheet()->getStyle('M'.$excel_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                                            $this->excel->getActiveSheet()->getStyle('M'.$excel_row)->getFont()->setBold(true);
+                                            $styleBorderArray = array('borders' => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)));
+                                            $this->excel->getActiveSheet()->getStyle('A'.$excel_row.':M'.$excel_row)->applyFromArray($styleBorderArray);
                                             $this->excel->createSheet(); 
                                         // }
                                         
