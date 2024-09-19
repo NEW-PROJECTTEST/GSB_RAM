@@ -575,6 +575,7 @@
                                 <label for="purpose">Donation Type*</label>
                                 <select class="form-control selectpicker" id="type_of_donation" name="type_of_donation" data-live-search="true">
                                     <option value=""> Select </option>
+                                    <option value="ALL"> ALL </option>
                                     <?php if(!empty($donationTypeInfo)) {
                                         foreach($donationTypeInfo as $role ){?>
                                     <option value="<?php echo $role->donation_type;?>">
@@ -587,8 +588,9 @@
                         <div class="col-lg-6 col-12 mt-2 seva_display">
                             <div class="form-group">
                                 <label for="purpose">Seva Type*</label>
-                                <select class="form-control selectpicker" id="seva_name" name="seva_name" required data-live-search="true">
+                                <select class="form-control selectpicker" multiple id="seva_name" name="seva_name[]" required data-live-search="true">
                                     <option value=""> Select Seva </option>
+                                    <option value="ALL"> ALL </option>
                                     <?php if(!empty($sevaInfo)) {
                                         foreach($sevaInfo as $role ){?>
                                     <option value="<?php echo $role->seva_name;?>">
@@ -1912,10 +1914,15 @@ function handleDonationTypeChange(selectElement) {
             $('#type_of_donation').prop('required',true);
             $('#seva_name').prop('required',false);
            
-        } else {
+        }else if(donation_type == 'SEVA'){
             $('.donation_display').hide();
             $('.seva_display').show();  
             $('#seva_name').prop('required',true); 
+            $('#type_of_donation').prop('required',false); 
+        } else {
+            $('.donation_display').hide();
+            $('.seva_display').hide();  
+            $('#seva_name').prop('required',false); 
             $('#type_of_donation').prop('required',false); 
          }
     
