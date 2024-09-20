@@ -573,7 +573,7 @@
                         <div class="col-lg-6 col-12 mt-2 donation_display">
                             <div class="form-group">
                                 <label for="purpose">Donation Type*</label>
-                                <select class="form-control selectpicker" id="type_of_donation" name="type_of_donation" data-live-search="true">
+                                <select class="form-control selectpicker"multiple id="type_of_donation" name="type_of_donation[]" data-live-search="true">
                                     <option value=""> Select </option>
                                     <option value="ALL"> ALL </option>
                                     <?php if(!empty($donationTypeInfo)) {

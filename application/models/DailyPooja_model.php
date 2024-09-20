@@ -492,13 +492,20 @@ function donationInfoForReport($filter='',$company_id)
             $this->db->like('BaseTbl.seva_name', $filter['seva_name']);
         }
     }
-    
-    
     if($filter['type_of_donation'] != 'ALL'){
-        if(!empty($filter['type_of_donation'])){
-            $this->db->where('BaseTbl.type_of_donation', $filter['type_of_donation']);
+        if(!empty($filter['type_of_donation']) && is_array($filter['type_of_donation'])){
+            $this->db->group_start(); // Group the conditions
+            foreach($filter['type_of_donation'] as $donation) {
+                $this->db->or_like('BaseTbl.type_of_donation', $donation);
+            }
+            $this->db->group_end(); // Close the grouped conditions
+        } else if (!empty($filter['type_of_donation'])){
+            // For a single seva_name (non-array)
+            $this->db->like('BaseTbl.type_of_donation', $filter['type_of_donation']);
         }
     }
+    
+    
     
 
     $this->db->where('BaseTbl.company_id',$company_id);
