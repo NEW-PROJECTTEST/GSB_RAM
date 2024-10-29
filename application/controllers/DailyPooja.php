@@ -17,7 +17,7 @@ class DailyPooja extends BaseController
         $this->load->model('income_model');
         $this->load->model('committee_model');
         $this->load->model('setting_model','settings');
-
+        $this->load->model('devotee_model');
         $this->isLoggedIn();   
     }
     
@@ -572,7 +572,7 @@ class DailyPooja extends BaseController
             $data['purposeInfo'] = $this->settings->getAllPurposeInfo($this->company_id);
             $data['sevaInfo'] = $this->DailyPooja_model->getAllSevaInfo($this->company_id);
             $data['donationTypeInfo'] = $this->settings->getAllDonationTypeInfo($this->company_id);
-
+            $data['allDevoteeInfo'] = $this->devotee_model->allDevoteeInfo($this->company_id);
 
             $this->global['pageTitle'] = $this->company_name.' :Donation Details ';
             $this->loadViews("DailyPooja/donation", $this->global, $data, NULL);

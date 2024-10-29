@@ -599,7 +599,19 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="col-lg-6 col-12 mt-2">
+                            <div class="form-group">
+                                <label for="purpose">Select Payment Type</label>
+                                <select class="form-control" id="payment_type" name="payment_type" onchange="handleDonationTypeChange(this)"
+                                    data-live-search="true">
+                                    <option value=""> Select </option>
+                                    <option value=""> ALL</option>
+                                    <option value="CASH">CASH</option>
+                                    <option value="BANK">BANK</option>
+                                    <option value="CREDITS">CREDITS</option>
+                                </select>
+                            </div>
+                        </div>
 
 
                     </div>

@@ -55,22 +55,23 @@ u {
         <div class="row" >
             <table style="width: 100%;border-collapse: collapse;">
                 <tr>
-                    <th style="border: 1px solid black;text-align: center;width: 100px;" colspan="13">DONATION/SEVA REPORT</th>
+                    <th style="border: 1px solid black;text-align: center;width: 100px;" colspan="12">DONATION/SEVA REPORT</th>
                 </tr>
                 <tr>
                     <th style="border: 1px solid black;text-align: center;width: 100px;">SL. NO.</th>
                     <th style="border: 1px solid black;text-align: center;width: 130px;">RECEIPT NO.</th>
                     <th style="border: 1px solid black;text-align: center;width: 130px;">DATE</th>
-                    <th style="border: 1px solid black;text-align: center;width: 100px;">NAME</th>
-                    <th style="border: 1px solid black;text-align: center;width: 100px;">EMAIL</th>
+                    <th style="border: 1px solid black;text-align: center;width: 130px;">NAME</th>
+                    <!-- <th style="border: 1px solid black;text-align: center;width: 100px;">EMAIL</th> -->
                     <th style="border: 1px solid black;text-align: center;width: 100px;">ADDRESS</th>
                     <!-- <th style="border: 1px solid black;text-align: center;width: 100px;">NOTE</th> -->
                     <th style="border: 1px solid black;text-align: center;width: 100px;">COLLECTED BY</th>
-                    <th style="border: 1px solid black;text-align: center;width: 100px;">TYPE</th>
-                    <th style="border: 1px solid black;text-align: center;width: 100px;">PURPOSE</th>
+                    <th style="border: 1px solid black;text-align: center;width: 60px;">TYPE</th>
+                    <th style="border: 1px solid black;text-align: center;width: 130px;">PURPOSE</th>
                     <th style="border: 1px solid black;text-align: center;width: 100px;">SEVA</th>
                     <th style="border: 1px solid black;text-align: center;width: 100px;">DONATION TYPE</th>
-                    <th style="border: 1px solid black;text-align: center;width: 100px;">AMOUNT</th>
+                    <th style="border: 1px solid black;text-align: center;width: 60px;">PAYMENT TYPE</th>
+                    <th style="border: 1px solid black;text-align: center;width: 60px;">AMOUNT</th>
 
                     <!-- <th style="text-align: center;width: 200px;"></th> -->
 
@@ -99,16 +100,17 @@ u {
                             <th style="border: 1px solid black;text-align: center;width: 100px;"><?php echo $j++; ?></th>
                             <th style="border: 1px solid black;text-align: center;width: 100px;"><?php echo $donation->row_id; ?></th>
                             <th style="border: 1px solid black;text-align: center;width: 50px;"><?php echo $donation_date; ?></th>
-                            <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->devotee_name; ?></th>
-                            <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->email; ?></th>
-                            <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->address; ?></th>
+                            <th style="border: 1px solid black;text-align: left;width: 300px;"><?php echo $donation->devotee_name; ?></th>
+                            <!-- <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->email; ?></th> -->
+                            <th style="border: 1px solid black;text-align: left;width: 250px;"><?php echo $donation->address; ?></th>
                             <!-- <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->note; ?></th> -->
                             <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->name; ?></th>
-                            <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->donation_type; ?></th>
-                            <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->purpose_name; ?></th>
+                            <th style="border: 1px solid black;text-align: left;width: 100px;"><?php echo $donation->donation_type; ?></th>
+                            <th style="border: 1px solid black;text-align: left;width: 250px;"><?php echo $donation->purpose_name; ?></th>
                             <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->seva_name; ?></th>
                             <th style="border: 1px solid black;text-align: left;width: 200px;"><?php echo $donation->type_of_donation; ?></th>
-                            <th style="border: 1px solid black;text-align: center;width: 200px;"><?php echo $donation->amount; ?></th>
+                            <th style="border: 1px solid black;text-align: center;width: 150px;"><?php echo $donation->payment_type; ?></th>
+                            <th style="border: 1px solid black;text-align: center;width: 150px;"><?php echo $donation->amount; ?></th>
 
                             <!-- <th style="text-align: center;width: 130px;"></th> -->
                             </tr>        

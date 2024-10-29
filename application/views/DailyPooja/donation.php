@@ -281,15 +281,30 @@ if ($error) {
 
 
 
-                                                <div class="form-group col-md-6 devotee_name">
+                                                <!-- <div class="form-group col-md-6 devotee_name">
                                                     <label for="fname">Devotee Name*</label>
                                                     <input class="form-control is-valid mobile-width " type="text"
                                                         name="devotee_name" id="devotee_name" value=""
                                                         class="form-control input-sm pull-right "
                                                         style="" placeholder="Name"
                                                         autocomplete="off" required>
+                                                </div> -->
+                                                <div class="col-lg-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="brand">Devotee Name Name<span class="text-danger required_star">*</span></label>
+                                                            <div class="input-group">
+                                                                <select class="form-control selectpicker" id="devotee_dropdown" data-live-search="true">
+                                                                    <option value="enter_devotee">Enter Devotee Name</option>
+                                                                    <?php if (!empty($allDevoteeInfo)) {
+                                                                            foreach ($allDevoteeInfo as $info) { ?>
+                                                                                    <option value="<?php echo $info->devotee_name; ?>"><?php echo $info->devotee_name; ?></option>
+                                                                                <?php }
+                                                                    } ?>
+                                                                        </select>
+                                                                <input type="text" class="form-control" id="devotee_input" name="devotee_name" placeholder="Enter Devotee Name" autocomplete="off" required/>
+                                                            </div>
+                                                    </div>
                                                 </div>
-
                                            
 
 
@@ -404,18 +419,19 @@ if ($error) {
                                                         <option value="">Select payment Type</option>
                                                         <option value="CASH">CASH</option>
                                                         <option value="BANK">BANK</option>
+                                                        <option value="CREDITS">CREDITS</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-6">
+                                                <!-- <div class="form-group col-md-6">
                                                     <label for="fname">Email</label>
                                                     <input class="form-control is-valid mobile-width " type="email"
                                                         name="email" id="email" value=""
                                                         class="form-control input-sm pull-right"
                                                         style="" placeholder="Email"
                                                         autocomplete="off">
-                                                </div>
+                                                </div> -->
 
                                                 <div class="form-group col-md-6 reference_number">
                                                     <label for="fname">Reference Number</label>
@@ -568,4 +584,15 @@ function readURL(input) {
 $("#vImg").change(function() {
     readURL(this);
 });
+const brandDropdown = document.getElementById('devotee_dropdown');
+    const brandInput = document.getElementById('devotee_input');
+    brandDropdown.addEventListener('change', function () {
+        if (brandDropdown.value === 'enter_devotee') {
+            brandInput.style.display = 'block';
+            brandInput.value = ''; // Clear the input value
+        } else {
+            brandInput.style.display = 'none';
+            brandInput.value = brandDropdown.options[brandDropdown.selectedIndex].text;
+        }
+    });
 </script>

@@ -26,7 +26,15 @@ class Expenses_model extends CI_Model
         if(!empty($filter['event_type'])){
             $this->db->where('BaseTbl.event_type', $filter['event_type']);
         }
-       
+        if(!empty($filter['expense_date'])) {
+            $this->db->where('BaseTbl.expense_date', $filter['expense_date']);
+        }
+        if(!empty($filter['payment_type'])) {
+            $this->db->where('BaseTbl.account_type', $filter['payment_type']);
+        }
+        if(!empty($filter['committee_name'])) {
+            $this->db->where('BaseTbl.committee_name', $filter['committee_name']);
+        }
         $this->db->where('BaseTbl.company_id',$company_id);
         $this->db->where('BaseTbl.is_deleted', 0);
         $query = $this->db->get();
@@ -59,7 +67,15 @@ class Expenses_model extends CI_Model
         if(!empty($filter['event_type'])){
             $this->db->where('BaseTbl.event_type', $filter['event_type']);
         }
-
+        if(!empty($filter['expense_date'])) {
+            $this->db->where('BaseTbl.expense_date', $filter['expense_date']);
+        }
+        if(!empty($filter['payment_type'])) {
+            $this->db->where('BaseTbl.account_type', $filter['payment_type']);
+        }
+        if(!empty($filter['committee_name'])) {
+            $this->db->where('BaseTbl.committee_name', $filter['committee_name']);
+        }
         $this->db->where('BaseTbl.company_id',$company_id);
         $this->db->where('BaseTbl.is_deleted', 0);
         $this->db->order_by('BaseTbl.row_id', 'DESC');

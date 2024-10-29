@@ -36,15 +36,29 @@ class Expenses extends BaseController
             $account_type = $this->security->xss_clean($this->input->post('account_type'));
             $expense_type = $this->security->xss_clean($this->input->post('expense_type'));
             $event_type = $this->security->xss_clean($this->input->post('event_type'));
+            $expense_date = $this->security->xss_clean($this->input->post('expense_date'));
+            $payment_type = $this->security->xss_clean($this->input->post('payment_type'));
+            $committee_name = $this->security->xss_clean($this->input->post('committee_name'));
+
             // $data['devotee_id'] = $devotee_id;
             $data['account_type'] = $account_type;
             $data['expense_type'] = $expense_type;
             $data['event_type'] = $event_type;
-            // $filter['devotee_id'] = $devotee_id;
+            $data['payment_type'] = $payment_type;
+            $data['committee_name'] = $committee_name;
+
+            $filter['committee_name'] = $committee_name;
+            $filter['payment_type'] = $payment_type;
             $filter['account_type'] = $account_type;
             $filter['expense_type'] = $expense_type;
             $filter['event_type'] = $event_type;
-           
+            if(!empty($expense_date)) {
+                $data['expense_date'] = date('d-m-Y',strtotime($expense_date));
+                $filter['expense_date'] = date('Y-m-d',strtotime($expense_date));
+            } else {
+                $data['expense_date'] = "";
+                $filter['expense_date'] = "";
+            }
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
             $this->load->library('pagination');
@@ -56,6 +70,7 @@ class Expenses extends BaseController
             $data['cashAccount'] = $this->cash_account_model->getAllCashAccounts($this->company_id);
             $data['expenseNameInfo'] = $this->setting_model->getAllExpenseNameInfo($this->company_id);
             $data['committeeInfo'] = $this->setting_model->getAllCommittetypeInfo($this->company_id);
+            $data['committeeTypeInfo'] =$this->committee_model->getCommitteeTypeInfo($this->company_id);  
             $data['eventInfo'] =$this->Event_model->getEventInfo($this->company_id); 
             $data['expensesRecords'] = $this->expenses_model->expensesListing($searchText,$filter,$this->company_id, $returns["page"], $returns["segment"]);
             $data['expenses_model'] = $this->expenses_model;

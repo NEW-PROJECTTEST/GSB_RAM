@@ -70,8 +70,16 @@ if ($error) {
                                     <!-- </th> -->
                                     <!-- <th width="40">
                                     </th> -->
-
-                                    <th width="150" style="padding: 0px;">
+                                    <th width="150" style="padding: 2px;">
+                                        <div class="form-group position-relative mb-0"><input
+                                                class="form-control is-valid mobile-width datepicker" type="text"
+                                                name="expense_date" id="" value="<?php echo $expense_date ?>"
+                                                class="form-control input-sm pull-right"
+                                                style="" placeholder="By Date"
+                                                autocomplete="off">
+                                        </div>
+                                    </th>
+                                    <th width="150" style="padding: 2px;">
                                         <div class="form-group position-relative mb-0"><input
                                                 class="form-control is-valid mobile-width" type="text"
                                                 name="expense_type" id="expense_type"
@@ -79,39 +87,45 @@ if ($error) {
                                                 class="form-control input-sm pull-right "
                                                 style="text-transform: uppercase" placeholder="By Expense Name"
                                                 autocomplete="off">
-                                            <div class="valid-feedback feedback-icon"><i class="fa fa-list"></i>
                                             </div>
                                         </div>
-                                    </th>
-                                    <th width="150" style="padding: 0px;">
-                                        <select class="form-control input-sm" id="" name="event_type">
-
-                                            <?php if($event_type != ""){ ?>
-
-                                            <option value="<?php echo $event_type; ?>" selected><b>Sorted:
-
-                                                    <?php echo $event_type; ?></b></option>
-
+                                    </th>&nbsp;
+                                    <th width="150" style="padding: 2px;">
+                                        <select class="form-control input-sm" id="" name="payment_type">
+                                            <?php if($payment_type != ""){ ?>
+                                            <option value="<?php echo $payment_type; ?>" selected><b>Sorted:
+                                                    <?php echo $payment_type; ?></b></option>
                                             <?php } ?>
-
+                                            <option value="">By Payment Type</option>
+                                            <option value="CASH">CASH</option>
+                                            <option value="BANK">BANK</option>
+                                            <option value="CREDITS">CREDITS</option>
+                                        </select>
+                                    </th>
+                                    <th width="150" style="padding: 2px;">
+                                        <select class="form-control input-sm" id="" name="event_type">
+                                            <?php if($event_type != ""){ ?>
+                                            <option value="<?php echo $event_type; ?>" selected><b>Sorted:
+                                                    <?php echo $event_type; ?></b></option>
+                                            <?php } ?>
                                             <option value="">By Event Type</option>
-
                                             <?php foreach($eventInfo as $event){ ?>
                                                 <option value="<?php echo $event->events ?>"><?php echo $event->events ?></option>
                                             <?php } ?>
-
                                         </select>
-                                        <!-- <div class="form-group position-relative mb-0"><input
-                                                class="form-control is-valid mobile-width " type="text"
-                                                name="account_type" id="account_type"
-                                                value="<?php echo $account_type ?>"
-                                                class="form-control input-sm pull-right "
-                                                style="text-transform: uppercase" placeholder="By Payment Type"
-                                                autocomplete="off">
-                                            <div class="valid-feedback feedback-icon"><i class="fa fa-money"></i></div>
-                                        </div> -->
                                     </th>
-                                    
+                                    <th width="150" style="padding: 2px;">
+                                        <select class="form-control input-sm" id="" name="committee_name">
+                                            <?php if($committee_name != ""){ ?>
+                                            <option value="<?php echo $committee_name; ?>" selected><b>Sorted:
+                                                    <?php echo $committee_name; ?></b></option>
+                                            <?php } ?>
+                                            <option value="">By Committe type</option>
+                                            <?php foreach($committeeTypeInfo as $info){ ?>
+                                                <option value="<?php echo $info->type ?>"><?php echo $info->type ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </th>
                                     <th width="150" style="padding: 0px;">
 
                                     </th>
@@ -135,7 +149,7 @@ if ($error) {
                         {
                     ?>
                             <tr class="text-black">
-                            <td><?php echo $expense->expense_date ?></td>
+                            <td><?php echo date('d-m-Y',strtotime($expense->expense_date)) ?></td>
                                 <td><?php echo $expense->expense_type ?></td>
                                 <td><?php echo $expense->account_type ?></td>
                                 <td><?php echo $expense->event_type ?></td>
@@ -277,6 +291,7 @@ if ($error) {
                                                 </option>
                                                 <option value="Cash">Cash</option>
                                                 <option value="Bank">Bank</option>
+                                                <option value="Credits">Credits</option>
                                             </select>
                                         </div>
                                     </div>
