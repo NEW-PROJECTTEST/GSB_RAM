@@ -224,13 +224,13 @@ if ($error) {
                                     </div>
                                 </div>
 
-                                <div class="form-group col-md-6">
+                                <!-- <div class="form-group col-md-6">
                                     <label for="fname">Email</label>
                                     <input class="form-control is-valid mobile-width " type="email" name="email"
                                         id="email" value="<?php echo $donationInfo->email;?>"
                                         class="form-control input-sm pull-right" style="text-transform: uppercase"
                                         placeholder="Email" autocomplete="off">
-                                </div>
+                                </div> -->
 
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">

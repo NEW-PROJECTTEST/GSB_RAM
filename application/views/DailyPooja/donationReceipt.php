@@ -94,10 +94,10 @@ table {
                                 <td><b>Number :</b>
                                     <?php echo $donationInfo->mobile_number; ?></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td width="220"><b>Email :</b> <?php echo $donationInfo->email; ?></td>
 
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td width="700"><b>Address : </b><?php echo $donationInfo->address; ?></td>
 
