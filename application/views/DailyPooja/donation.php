@@ -596,3 +596,74 @@ const brandDropdown = document.getElementById('devotee_dropdown');
         }
     });
 </script>
+
+<script>
+$(document).ready(function(){
+
+    // === Restore previously saved values ===
+    $("#addFamily").find("input, select, textarea").each(function () {
+        var fieldName = $(this).attr("name");
+
+        // ⛔ Skip devotee_name (do not restore from localStorage)
+        if (fieldName && fieldName !== "devotee_name") {
+            var savedValue = localStorage.getItem("donationForm_" + fieldName);
+            if (savedValue) {
+                if($(this).prop("multiple")) {
+                    $(this).val(savedValue.split(","));
+                } else {
+                    $(this).val(savedValue);
+                }
+                if($(this).hasClass("selectpicker")){
+                    $(this).selectpicker("refresh");
+                }
+            }
+        }
+    });
+
+    // === Trigger change logic on page load ===
+    $("#payment_type").trigger("change");
+    $("#donation_type").trigger("change");
+
+    // === Save all values when form is submitted ===
+    $("#addFamily").on("submit", function () {
+        $(this).find("input, select, textarea").each(function () {
+            var fieldName = $(this).attr("name");
+            var fieldValue = $(this).val();
+
+            // ⛔ Skip devotee_name (do not save to localStorage)
+            if (fieldName && fieldName !== "devotee_name") {
+                if($.isArray(fieldValue)) {
+                    localStorage.setItem("donationForm_" + fieldName, fieldValue.join(","));
+                } else {
+                    localStorage.setItem("donationForm_" + fieldName, fieldValue);
+                }
+            }
+        });
+        // continue normal submission
+    });
+
+    // === Conditional Show/Hide ===
+    let payment_type = $('#payment_type').val();
+    if (payment_type === 'BANK') {
+        $('.reference_number').show();
+    } else {
+        $('.reference_number').hide();
+    }
+
+    let donation_type = $('#donation_type').val();
+    if (donation_type === 'DONATION') {
+        $('.donation_display').show();
+        $('.seva_display').hide();
+        $('#donation_amount').prop('required',true);
+        $('#type_of_donation').prop('required',true);
+        $('#seva_name').prop('required',false);
+    } else {
+        $('.donation_display').hide();
+        $('.seva_display').show();
+        $('#seva_name').prop('required',true);
+        $('#donation_amount').prop('required',false);   
+        $('#type_of_donation').prop('required',false); 
+    }
+});
+</script>
+

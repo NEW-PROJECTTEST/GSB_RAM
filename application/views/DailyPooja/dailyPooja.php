@@ -515,3 +515,35 @@ $(document).ready(function() {
 
 });
 </script>
+
+<script>
+$(document).ready(function(){
+
+    // Restore previously saved values (default selections)
+    $("#addSubscription").find("input, select, textarea").each(function () {
+        var fieldName = $(this).attr("name");
+        if (fieldName) {
+            var savedValue = localStorage.getItem("dailyPooja_" + fieldName);
+            if (savedValue) {
+                $(this).val(savedValue);
+                if($(this).hasClass("selectpicker")){
+                    $(this).selectpicker("refresh"); // needed for bootstrap-select
+                }
+            }
+        }
+    });
+
+    // On form submit → Save all values as defaults
+    $("#addSubscription").on("submit", function () {
+        $(this).find("input, select, textarea").each(function () {
+            var fieldName = $(this).attr("name");
+            var fieldValue = $(this).val();
+            if (fieldName) {
+                localStorage.setItem("dailyPooja_" + fieldName, fieldValue);
+            }
+        });
+        // form continues submitting normally
+    });
+
+});
+</script>
