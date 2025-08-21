@@ -188,7 +188,8 @@ public function downloadDevotee(){
             $data['company_id'] = $this->company_id;
             $data['devotee_model'] = $this->Devotee_model;
             $this->global['pageTitle'] = ''.EXCEL_TITLE.' : DEVOTEE REPORT';
-            $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman']);
+            // $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman']);
+            $mpdf = new \Mpdf\Mpdf(['default_font' => 'timesnewroman']);
             $mpdf->AddPage('P','','','','',10,10,10,10,8,8);
             $mpdf->SetTitle('DEVOTEE REPORT');
             $html = $this->load->view('report/devoteeView',$data,true);
@@ -581,7 +582,8 @@ public function downloadDevotee(){
                             $data['company_id'] = $this->company_id;
                             $data['DailyPooja_model'] = $this->DailyPooja_model;
                             $this->global['pageTitle'] = ''.EXCEL_TITLE.' : YEARLY POOJA';
-                            $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                            // $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                            $mpdf = new \Mpdf\Mpdf(['default_font' => 'timesnewroman','format' => [400, 160]]);
                             $mpdf->AddPage('P','','','','',10,10,10,10,8,8);
                             $mpdf->SetTitle('DAILY POOJA');
                             $html = $this->load->view('report/dailyPoojaView',$data,true);
@@ -720,7 +722,8 @@ public function downloadDevotee(){
                                     $data['company_id'] = $this->company_id;
                                     $data['DailyPooja_model'] = $this->DailyPooja_model;
                                     $this->global['pageTitle'] = ''.EXCEL_TITLE.' : DEVOTEE REPORT';
-                                    $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                                    // $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                                    $mpdf = new \Mpdf\Mpdf(['default_font' => 'timesnewroman','format' => [400, 160]]);
                                     $mpdf->AddPage('P','','','','',10,10,10,10,8,8);
                                     $mpdf->SetTitle('PANCHANGA POOJA');
                                     $html = $this->load->view('report/panchangaView',$data,true);
@@ -862,7 +865,8 @@ public function downloadDevotee(){
                                     $data['year'] = $year;
                                     $data['expenses_model'] = $this->expenses_model;
                                     $this->global['pageTitle'] = ''.EXCEL_TITLE.' : DEVOTEE REPORT';
-                                    $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                                    // $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                                    $mpdf = new \Mpdf\Mpdf(['default_font' => 'timesnewroman','format' => [400, 160]]);
                                     $mpdf->AddPage('P','','','','',10,10,10,10,8,8);
                                     $mpdf->SetTitle('EXPENSE REPORT');
                                     $html = $this->load->view('report/expenseView',$data,true);
@@ -1026,7 +1030,8 @@ public function downloadDevotee(){
                                         $data['company_id'] = $this->company_id;
                                         $data['DailyPooja_model'] = $this->DailyPooja_model;
                                         $this->global['pageTitle'] = ''.EXCEL_TITLE.' : DONATION REPORT';
-                                        $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                                        // $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => [400, 160]]);
+                                        $mpdf = new \Mpdf\Mpdf(['default_font' => 'timesnewroman','format' => [400, 160]]);
                                         $mpdf->AddPage('P','','','','',10,10,10,10,8,8);
                                         $mpdf->SetTitle('DONATION REPORT');
                                         $html = $this->load->view('report/donationView',$data,true);

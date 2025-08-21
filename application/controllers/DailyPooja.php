@@ -382,7 +382,8 @@ class DailyPooja extends BaseController
                       
             $this->global['pageTitle'] = ''.TAB_TITLE.' : Pooja Receipt';
             // $this->loadViews("fees/feeReceiptPrint", $this->global, $data, null); 
-            $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => 'A5']);
+            // $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => 'A5']);
+            $mpdf = new \Mpdf\Mpdf(['default_font' => 'timesnewroman','format' => 'A5']);
             $mpdf->autoScriptToLang = true;
             $mpdf->autoLangToFont = true;
                         $mpdf->AddPage('P','','','','',7,7,7,7,8,8);
@@ -406,7 +407,8 @@ class DailyPooja extends BaseController
                       
             $this->global['pageTitle'] = ''.TAB_TITLE.' : Pooja Receipt';
             // $this->loadViews("fees/feeReceiptPrint", $this->global, $data, null); 
-            $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => 'A5']);
+            // $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => 'A5']);
+            $mpdf = new \Mpdf\Mpdf(['default_font' => 'timesnewroman','format' => 'A5']);
             $mpdf->autoScriptToLang = true;
             $mpdf->autoLangToFont = true;
                         $mpdf->AddPage('P','','','','',7,7,7,7,8,8);
@@ -731,7 +733,8 @@ class DailyPooja extends BaseController
                       
             $this->global['pageTitle'] = ''.TAB_TITLE.' : Donation Receipt';
             // $this->loadViews("fees/feeReceiptPrint", $this->global, $data, null); 
-            $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => 'A5']);
+            // $mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir().DIRECTORY_SEPARATOR.'mpdf','default_font' => 'timesnewroman','format' => 'A5']);
+            $mpdf = new \Mpdf\Mpdf(['default_font' => 'timesnewroman','format' => 'A5']);
             // $mpdf->SetWatermarkImage(
             //     'assets/dist/img/bharathi_logo.png',
             //     0.2,
