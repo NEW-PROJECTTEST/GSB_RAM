@@ -223,6 +223,12 @@
                                         <span>Donation Info</span>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="<?php echo base_url(); ?>expenseListing">
+                                    <i class="fas fa-share-square"></i>
+                                        <span>Expenses</span>
+                                    </a>
+                                </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link " href="<?php echo base_url(); ?>sevaListing">
@@ -277,12 +283,6 @@
                                             <a class="nav-link " href="<?php echo base_url(); ?>cashLedgerListing">
                                             <i class="fas fa-book"></i>
                                                 <span>Cash Ledger</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item nav-margin">
-                                            <a class="nav-link " href="<?php echo base_url(); ?>expenseListing">
-                                            <i class="fas fa-share-square"></i>
-                                                <span>Expenses</span>
                                             </a>
                                         </li>
                                         <li class="nav-item nav-margin">

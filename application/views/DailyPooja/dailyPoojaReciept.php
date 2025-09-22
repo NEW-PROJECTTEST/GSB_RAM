@@ -61,10 +61,11 @@ table {
                     <td style="text-align:center;" width="80">
                         <img class="mt-2" width="100" height="90" src="<?php echo $companyLogo; ?>" alt="logo">
                     </td>
-                    <td width="700" style="text-align:center;">
+                    <td width="600" style="text-align:center;">
                         <!-- <b style="font-size: 25px;margin-bottom: 2px;">ಶ್ರೀ ರಾಮ ಮಂದಿರ</b><br /> -->
-                        <b style="font-size: 40px;margin-bottom: 2px;">ಜಿ.ಎಸ್.ಬಿ ಸಮಾಜ &nbsp;ಶ್ರೀ ರಾಮ ಮಂದಿರ</b><br />
-                        <p style="font-size: 18px;margin-bottom: 2px;">ಕಲ್ಮಾಡಿ ಸೇತುವೆ ಬಳಿ, ಮಲ್ಪೆ ಮುಖ್ಯ ರಸ್ತೆ ಉಡುಪಿ ಜಿಲ್ಲೆ, ಕರ್ನಾಟಕ, ಭಾರತ 576108</p>
+                        <!-- <b style="font-size: 40px;margin-bottom: 2px;">ಜಿ.ಎಸ್.ಬಿ ಸಮಾಜ &nbsp;ಶ್ರೀ ರಾಮ ಮಂದಿರ</b><br />
+                        <p style="font-size: 18px;margin-bottom: 2px;">ಕಲ್ಮಾಡಿ ಸೇತುವೆ ಬಳಿ, ಮಲ್ಪೆ ಮುಖ್ಯ ರಸ್ತೆ ಉಡುಪಿ ಜಿಲ್ಲೆ, ಕರ್ನಾಟಕ, ಭಾರತ 576108</p> -->
+                        <img src="assets/images/donation_heading.png" alt="Kannada Heading" style="width:100%; max-width:700px;">
                         <span style="font-size: 13px;margin-bottom: 2px;">
                         </span><br />
                         <br />
@@ -77,49 +78,52 @@ table {
                 <tr>
                     <td>
                         <table class="table" style="font-size: 15px;">
-
                             <tr>
-                                <td colspan="4">ರಶೀದಿ ಸಂಖ್ಯೆ.: <span
-                                        style="color: red;"><?php echo  $dpInfo->row_id; ?></span></td>
+                                <td colspan="4">
+                                    <img src="assets/images/1.png" alt="ರಶೀದಿ ಸಂಖ್ಯೆ" style="width:85px; vertical-align:middle;"> 
+                                    .: <span style="color: red;"><?php echo $dpInfo->row_id; ?></span>
+                                </td>
                             </tr>
                             <tr>
-                                <td width="350">ಹೆಸರು : <?php echo strtoupper($dpInfo->devotee_name); ?></td>
+                                <td width="350">
+                                    <img src="assets/images/2.png" alt="ಹೆಸರು" style="width:45px; vertical-align:middle;"> 
+                                    : <?php echo strtoupper($dpInfo->devotee_name); ?>
+                                </td>
                             </tr>
-
                             <tr>
-                                <td width="220">ದೂರವಾಣಿ ಸಂಖ್ಯೆ : <?php echo $dpInfo->contact_number; ?></td>
-
+                                <td width="220">
+                                    <img src="assets/images/3.png" alt="ದೂರವಾಣಿ ಸಂಖ್ಯೆ" style="width:110px; vertical-align:middle;"> 
+                                    : <?php echo $dpInfo->contact_number; ?>
+                                </td>
                             </tr>
-
                             <tr>
-                                <td colspan="2">ದಿನಾಂಕ :
-                                    <?php echo date('d-m-Y',strtotime($dpInfo->created_date_time)); ?></td>
+                                <td colspan="2">
+                                    <img src="assets/images/4.png" alt="ದಿನಾಂಕ" style="width:55px; vertical-align:middle;"> 
+                                    : <?php echo date('d-m-Y',strtotime($dpInfo->created_date_time)); ?>
+                                </td>
                             </tr>
-
-
-
-
-
                         </table>
                     </td>
                     <td>
-
                         <table class="table" style="font-size: 15px;">
-
                             <tr>
-                            
-                                <td >ವಿಳಾಸ: <span><?php echo  $dpInfo->devotee_address; ?></span></td>
+                                <td>
+                                    <img src="assets/images/5.png" alt="ವಿಳಾಸ" style="width:48px; vertical-align:middle;"> 
+                                    : <span><?php echo $dpInfo->devotee_address; ?></span>
+                                </td>
                             </tr>
-                                                    
                         </table>
-
                     </td>
                 </tr>
             </table>
             <table class="table table_bordered" style="font-size: 15px;">
                 <tr>
-                    <th>ವಿವರಗಳು</th>
-                    <th width="120">ಮೊತ್ತ</th>
+                    <th>
+                        <img src="assets/images/6.png" alt="ವಿವರಗಳು" style="width:65px; vertical-align:middle;">
+                    </th>
+                    <th width="120">
+                        <img src="assets/images/7.png" alt="ಮೊತ್ತ" style="width:40px; vertical-align:middle;">
+                    </th>
                 </tr>
                 <tr>
                     <td style="text-align: left;"><b>Pooja Date</b> - <?php echo $date.' - '.$dpInfo->month ?><br />
@@ -131,26 +135,19 @@ table {
                     <td style="text-align: right;"><?php echo sprintf('%0.2f', $dpInfo->amount); ?></td>
                 </tr>
                 <tr>
-                    <th>ಒಟ್ಟು ಮೊತ್ತ</th>
+                    <th>
+                        <img src="assets/images/8.png" alt="ಒಟ್ಟು ಮೊತ್ತ" style="width:80px; vertical-align:middle;">
+                    </th>
                     <th style="text-align: right;"><?php echo sprintf('%0.2f', $dpInfo->amount); ?></th>
                 </tr>
                 <tr>
-                    <td colspan="2" style="font-size: 13px;"><br><b>Amount: <span
-                                style="text-transform: none;"><?php echo getIndianCurrency(floatval($dpInfo->amount)).' only'; ?></span></b>
-                               
-                    </td>
-
-                   
+                    <td colspan="2" style="font-size: 13px;"><br><b>Amount: <span style="text-transform: none;"><?php echo getIndianCurrency(floatval($dpInfo->amount)).' only'; ?></span></b></td>
                 </tr>
                 <tr>
                 <td colspan="2" style="font-size: 16px;"><br><b><span style="color: red;">Notes:</span> <span
                                 style="text-transform: none;"><?php echo $dpInfo->remarks; ?></span></b>
-                               
                     </td>
-
-                
                 </tr>
-                
             </table>
 
         </div>

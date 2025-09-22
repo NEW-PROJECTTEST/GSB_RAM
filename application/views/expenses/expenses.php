@@ -483,26 +483,64 @@ $("#tran_type").change(function() {
 
 });
 
+$(document).ready(function(){
 
+    // === Restore previously saved values ===
+    $("#addExpenses").find("input, select, textarea").each(function () {
+        var fieldName = $(this).attr("name");
 
-$("#type_of_expense").change(function() {
-    type_of_expense = $('#type_of_expense').val();
-    if (type_of_expense == 'Event') {
-        $('.committee_name').show();
-        $("#committee_name").prop('required', true);
-        $('.event_type').show();
-        $("#event_type").prop('required', true);
-    } else {
-        $('.committee_name').show();
-        $("#committee_name").prop('required', true);
-        $('.event_type').hide();
-        $("#event_type").prop('required', false);
-    }
+        if (fieldName) {
+            var savedValue = localStorage.getItem("expenseForm_" + fieldName);
+            if (savedValue) {
+                if($(this).prop("multiple")) {
+                    $(this).val(savedValue.split(","));
+                } else {
+                    $(this).val(savedValue);
+                }
+                if($(this).hasClass("selectpicker")){
+                    $(this).selectpicker("refresh");
+                }
+            }
+        }
+    });
+
+    $(document).on('change', '#type_of_expense', function() {
+        type_of_expense = $('#type_of_expense').val();
+        if (type_of_expense == 'Event') {
+            $('.committee_name').show();
+            $("#committee_name").prop('required', true);
+            $('.event_type').show();
+            $("#event_type").prop('required', true);
+        } else {
+            $('.committee_name').show();
+            $("#committee_name").prop('required', true);
+            $('.event_type').hide();
+            $("#event_type").prop('required', false);
+        }
+    });
+
+    // === Trigger change logic on page load ===
+    $('#Modal').on('shown.bs.modal', function() {
+        $('#type_of_expense').trigger('change');
+    });
+
+    // === Save all values when form is submitted ===
+    $("#addExpenses").on("submit", function () {
+        $(this).find("input, select, textarea").each(function () {
+            var fieldName = $(this).attr("name");
+            var fieldValue = $(this).val();
+
+            if (fieldName) {
+                if($.isArray(fieldValue)) {
+                    localStorage.setItem("expenseForm_" + fieldName, fieldValue.join(","));
+                } else {
+                    localStorage.setItem("expenseForm_" + fieldName, fieldValue);
+                }
+            }
+        });
+        // continue normal submission
+    });
 });
-
-
-
-
 
 function readURL(input) {
     if (input.files && input.files[0]) {

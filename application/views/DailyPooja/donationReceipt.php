@@ -56,13 +56,15 @@ table {
             <table class="table text_highlight" style="background-color:#FFA500">
                 <tr>
                     <!-- <td style="text-align:center;" width="80">
-                        <img class="mt-2" width="100" height="90" src="<?php echo $companyLogo; ?>" alt="logo"> 
+                        <img class="mt-2" width="100" height="90" src="<?php //echo $companyLogo; ?>" alt="logo"> 
                     </td> -->
                     <td width="700" style="text-align:center;">
                         <!-- <b style="font-size: 25px;margin-bottom: 2px;">ಶ್ರೀ ರಾಮ ಮಂದಿರ</b><br /> -->
                         <br/>
-                        <b style="font-size: 32px;margin-bottom: 2px;">ಜಿ.ಎಸ್.ಬಿ ಸಮಾಜ &nbsp;ಶ್ರೀ ರಾಮ ಮಂದಿರ</b><br />
-                        <p style="font-size: 15px;margin-bottom: 2px;">ಕಲ್ಮಾಡಿ ಸೇತುವೆ ಬಳಿ, ಮಲ್ಪೆ ಮುಖ್ಯ ರಸ್ತೆ ಉಡುಪಿ ಜಿಲ್ಲೆ, ಕರ್ನಾಟಕ, ಭಾರತ 576108</p>
+                        <!-- <b style="font-size: 32px;margin-bottom: 2px;">ಜಿ.ಎಸ್.ಬಿ ಸಮಾಜ &nbsp;ಶ್ರೀ ರಾಮ ಮಂದಿರ</b><br />
+                        <p style="font-size: 15px;margin-bottom: 2px;">ಕಲ್ಮಾಡಿ ಸೇತುವೆ ಬಳಿ, ಮಲ್ಪೆ ಮುಖ್ಯ ರಸ್ತೆ ಉಡುಪಿ ಜಿಲ್ಲೆ, ಕರ್ನಾಟಕ, ಭಾರತ 576108</p> -->
+                        <img src="assets/images/donation_heading.png" alt="Kannada Heading" style="width:100%; max-width:700px;">
+                        <br />
                         <span style="font-size: 18px;margin-bottom: 2px;">Purpose: <b><?php echo $donationInfo->purpose_name; ?></b>
                         </span><br />
                         <br />
