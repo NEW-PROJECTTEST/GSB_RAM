@@ -516,6 +516,7 @@ $(document).ready(function(){
             $("#committee_name").prop('required', true);
             $('.event_type').hide();
             $("#event_type").prop('required', false);
+            $("#event_type").val('');
         }
     });
 
