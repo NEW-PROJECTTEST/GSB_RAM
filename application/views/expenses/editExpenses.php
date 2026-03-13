@@ -301,6 +301,7 @@ if (type_of_expenses == 'Event') {
         $("#committee_name").prop('required', true);
         $('.event_type').hide();
         $("#event_type").prop('required', false);
+        $("#event_type").val('');
     }
 
 
@@ -357,6 +358,7 @@ $("#type_of_expense").change(function() {
         $("#committee_name").prop('required', true);
         $('.event_type').hide();
         $("#event_type").prop('required', false);
+        $("#event_type").val('');
     }
 });
 
