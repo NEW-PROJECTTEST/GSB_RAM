@@ -196,64 +196,57 @@ class Expenses_model extends CI_Model
    }
 
 
-   function getexpensesInfoForReport($filter='',$company_id)
-   {
-       $this->db->select('BaseTbl.row_id,BaseTbl.event_type,BaseTbl.year, BaseTbl.account_type, 
-       BaseTbl.expense_date, BaseTbl.amount, BaseTbl.comments,BaseTbl.expense_type,BaseTbl.expense_type,BaseTbl.committee_name,
-       BaseTbl.committee_id');
-       $this->db->from('tbl_expenses as BaseTbl');
-    //    if(!empty($searchText)) {
-    //        $likeCriteria = "(BaseTbl.account_type  LIKE '%".$searchText."%'
-    //        OR  BaseTbl.expense_type  LIKE '%".$searchText."%')";
-    //        $this->db->where($likeCriteria);
-    //    }
-    //    if(!empty($filter['account_type'])){
-    //        $likeCriteria = "(BaseTbl.account_type  LIKE '%".$filter['account_type']."%')";
-    //        $this->db->where($likeCriteria);
-    //    }
-    //    // if(!empty($filter['row_id'])){
-    //    //     $this->db->where('BaseTbl.row_id', $filter['row_id']);
-    //    // }
-
-    // log_message('debug','HHH'.print_r($filter,true));
-       if(!empty($filter['event_type'])){
-           $this->db->where('BaseTbl.event_type', $filter['event_type']);
-       }
-
-    //    if(!empty($filter['type_of_expense'])){
-    //     $this->db->where('BaseTbl.type_of_expense', $filter['type_of_expense']);
-    // }
-    if(!empty($filter['committee_id'])){
-        $this->db->where('BaseTbl.committee_name', $filter['committee_id']);
-    }
-       if(!empty($filter['year'])){
-        $this->db->where('BaseTbl.year', $filter['year']);
-    }
-
-    if(!empty($filter['expense_fromDate'])) {
-        $this->db->where('BaseTbl.expense_date >=', $filter['expense_fromDate']);
-    }
-
-    if(!empty($filter['expense_toDate'])) {
+    function getexpensesInfoForReport($filter='',$company_id)
+    {
+        $this->db->select('BaseTbl.row_id,BaseTbl.event_type,BaseTbl.year, BaseTbl.account_type, 
+        BaseTbl.expense_date, BaseTbl.amount, BaseTbl.comments,BaseTbl.expense_type,BaseTbl.expense_type,BaseTbl.committee_name,
+        BaseTbl.committee_id');
+        $this->db->from('tbl_expenses as BaseTbl');
+        //    if(!empty($searchText)) {
+        //        $likeCriteria = "(BaseTbl.account_type  LIKE '%".$searchText."%'
+        //        OR  BaseTbl.expense_type  LIKE '%".$searchText."%')";
+        //        $this->db->where($likeCriteria);
+        //    }
+        //    if(!empty($filter['account_type'])){
+        //        $likeCriteria = "(BaseTbl.account_type  LIKE '%".$filter['account_type']."%')";
+        //        $this->db->where($likeCriteria);
+        //    }
+        //    // if(!empty($filter['row_id'])){
+        //    //     $this->db->where('BaseTbl.row_id', $filter['row_id']);
+        //    // }
+        if(!empty($filter['event_type'])){
+            $this->db->where('BaseTbl.event_type', $filter['event_type']);
+        }
+        //    if(!empty($filter['type_of_expense'])){
+        //     $this->db->where('BaseTbl.type_of_expense', $filter['type_of_expense']);
+        // }
+        if(!empty($filter['committee_id'])){
+            $this->db->where('BaseTbl.committee_name', $filter['committee_id']);
+        }
+        if(!empty($filter['year'])){
+            $this->db->where('BaseTbl.year', $filter['year']);
+        }
+        if(!empty($filter['expense_fromDate'])) {
+            $this->db->where('BaseTbl.expense_date >=', $filter['expense_fromDate']);
+        }
+        if(!empty($filter['expense_toDate'])) {
             $this->db->where('BaseTbl.expense_date <=', $filter['expense_toDate']);
         }
+        $this->db->where('BaseTbl.company_id',$company_id);
+        $this->db->where('BaseTbl.is_deleted', 0);
+        $this->db->order_by('BaseTbl.row_id', 'DESC');
+        $query = $this->db->get();
+        $result = $query->result();        
+        return $result;
+    }
 
-       $this->db->where('BaseTbl.company_id',$company_id);
-       $this->db->where('BaseTbl.is_deleted', 0);
-       $this->db->order_by('BaseTbl.row_id', 'DESC');
-       $query = $this->db->get();
-       $result = $query->result();        
-       return $result;
-   }
-
-
-   function addDocument($certificateInfo){
-    $this->db->trans_start();
-    $this->db->insert('tbl_attachment_document_details', $certificateInfo);
-    $insert_id = $this->db->insert_id(); 
-    $this->db->trans_complete();
-    return $insert_id; 
-}
+    function addDocument($certificateInfo){
+        $this->db->trans_start();
+        $this->db->insert('tbl_attachment_document_details', $certificateInfo);
+        $insert_id = $this->db->insert_id(); 
+        $this->db->trans_complete();
+        return $insert_id; 
+    }
 
 
        function getAttachmentDocumentInfo($expense_id){

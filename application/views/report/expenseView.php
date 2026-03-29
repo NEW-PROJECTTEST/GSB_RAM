@@ -6,11 +6,9 @@ ini_set('max_execution_time', -1);
 <style>
 .break { page-break-before: always; } 
 .break_after { page-break-before: none; } 
-
 table{
     width: 100% !important;
 }
-
 u {    
     border-bottom: 2px dotted #00000;
     text-decoration: none;
@@ -23,33 +21,26 @@ u {
 }*/
 .border_full{
     border: 1px solid black;
-    
     /* height: 90% !important; */
 }
 .border_bottom{
-    
     border-bottom: 1px solid black;
 }
 .hr_line{
     margin: 0px;
     color: black;
 }
-
 .table_bordered{
     border-collapse: collapse;
 }
 .table_bordered th,.table_bordered td{
     border-top: 1px solid black;
-    
     border-right: 1px solid black;
     padding: 3px;
 }
-
 .table_bordered th .border_right_none,.table_bordered td .border_right_none{
     border-right: 1px solid transparent !important;
 }
-
-
 </style>
     <div class="container-fluid " style="padding-right:0px; padding-left:0px;">
         <div class="row" >
@@ -66,50 +57,36 @@ u {
                     <th style="border: 1px solid black;text-align: center;">Expense Name</th>
                     <th style="border: 1px solid black;text-align: center;">Amount</th>
                     <th style="border: 1px solid black;text-align: center;">Notes</th>
-                    
-
-
                 </tr>
                 <?php 
                 $filter = array();
                 $total_amount = 0;
-
                 // $filter = $dt_filter;
-                $filter['report_type']= "Asset";
-                     if(!empty($expense_fromDate)) {
-                    $filter['expense_fromDate']= date('Y-m-d',strtotime($expense_fromDate));
-                    }
-                    else{
+                    $filter['report_type']= "Asset";
+                    if(!empty($expense_fromDate)) {
+                        $filter['expense_fromDate']= date('Y-m-d',strtotime($expense_fromDate));
+                    }else{
                         $filter['expense_fromDate'] = ''; 
                     }
                     if(!empty($expense_toDate)) {
-                    $filter['expense_toDate']=  date('Y-m-d',strtotime($expense_toDate));
-                    }
-                    else{
+                        $filter['expense_toDate']=  date('Y-m-d',strtotime($expense_toDate));
+                    }else{
                         $filter['expense_toDate']= '';
                     }
                     if($event_type == 'other'){
-                    $filter['type_of_expense']= 'Other';
+                        $filter['type_of_expense']= 'Other';
                     }else{
                         $filter['event_type']= $event_type;  
                     }
                     $filter['committee_id']= $committe_id; 
-
                     $expenseInfo = $expenses_model->getexpensesInfoForReport($filter,$company_id);
                     if(!empty($expenseInfo)){
-                       
-                        
                         $j=1;
-
-        
                         foreach($expenseInfo as $expense){  
                             $total_amount+= $expense->amount;
-                            if($expense->expense_date=="1970-01-01")
-                            {
+                            if($expense->expense_date=="1970-01-01"){
                                 $expense_date = '';
-                            }
-                            else
-                            {
+                            }else{
                                 $expense_date = date('d-m-Y',strtotime($expense->expense_date)) ; 
                             }
                             ?>  
@@ -122,17 +99,12 @@ u {
                             <th style="border: 1px solid black;text-align: left;"><?php echo $expense->expense_type; ?></th>
                             <th style="border: 1px solid black;text-align: left;"><?php echo $expense->amount; ?></th>
                             <th style="border: 1px solid black;text-align: left;"><?php echo $expense->comments; ?></th>
-                            
-
                             </tr>        
                             <?php        
                         } ?>
                         <tr><td></td><td></td><td></td><td></td><td></td><td></td><td style="padding-top: 20px;font-size:20px;width: 200px;"><b>Total : <?php echo $total_amount ?></b></td></tr>
-
-                <?php    }
-                
+                    <?php }
                 ?>
-               
             </table>
         </div>
     </div>
