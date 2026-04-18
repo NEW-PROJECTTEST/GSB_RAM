@@ -217,9 +217,9 @@ class Expenses_model extends CI_Model
         if(!empty($filter['event_type'])){
             $this->db->where('BaseTbl.event_type', $filter['event_type']);
         }
-        //    if(!empty($filter['type_of_expense'])){
-        //     $this->db->where('BaseTbl.type_of_expense', $filter['type_of_expense']);
-        // }
+        if(!empty($filter['type_of_expense'])){
+            $this->db->where('BaseTbl.type_of_expense', $filter['type_of_expense']);
+        }
         if(!empty($filter['committee_id'])){
             $this->db->where('BaseTbl.committee_name', $filter['committee_id']);
         }
