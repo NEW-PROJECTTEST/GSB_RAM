@@ -144,13 +144,13 @@ table{
                     </td>
                 </tr>
             </table>
-
         </div>
     </div>
-  
 </div>
 
-<!-- <b style="font-size: 11px;">This is a system generated fee receipt. No seal and signature is required. Fees ones paid is not refundable.</b> -->
+<div class="container-fluid border_full" style="margin-top: 15px; padding: 10px;">
+    <b style="font-size: 12px;">The validity of the Shashwath Puja shall be for 10 years from the date of receipt.</b>
+</div>
 
 
 
