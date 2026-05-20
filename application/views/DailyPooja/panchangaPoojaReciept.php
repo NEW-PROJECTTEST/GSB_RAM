@@ -149,7 +149,7 @@ table{
 </div>
 
 <div class="container-fluid border_full" style="margin-top: 15px; padding: 10px; background-color: yellow;">
-    <b style="font-size: 12px;">The validity of the Shashwath Puja shall be for 10 years from the date of receipt.</b>
+    <b style="font-size: 13px; text-transform:uppercase;">The validity of the Shashwath Puja shall be for 10 years from the date of receipt.</b>
 </div>
 
 
